@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="PosTicket">
+        <t t-jquery="t[t-if='receipt.footer']" t-operation='after'>
+            <div id="bcTarget" style="margin-left: 10px;"></div>
+        </t>
+
+        <t t-jquery=".receipt-orderlines" t-operation='replace'>
+            <table class='receipt-orderlines' style="border-bottom: solid 2px;">
+                <colgroup>
+                    <col width='20%' />
+                    <col width='25%' />
+                    <col width='25%' />
+                    <col width='30%' />
+                </colgroup>
+                <tr style="border: solid;">
+                    <th>ITEM</th>
+                    <th class="pos-right-align">QTY</th>
+                    <th class="pos-right-align">PRICE</th>
+                    <th class="pos-right-align">AMOUNT</th>
+                </tr>
+                <t t-foreach="orderlines" t-as="orderline">
+                    <tr>
+                        <td colspan="4">
+                            <t t-esc="orderline.get_product().display_name"/>
+                             <t t-if="orderline.get_discount() > 0">
+                                <div class="pos-disc-font">
+                                    With a <t t-esc="orderline.get_discount()"/>% discount
+                                </div>
+                            </t>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td class="pos-right-align">
+                            <b><t t-esc="orderline.get_quantity_str_with_unit()"/></b>
+                        </td>
+                        <td class="pos-right-align">
+                            <b><t t-esc="orderline.get_unit_display_price()"/></b>
+                        </td>
+                        <td class="pos-right-align">
+                            <b><t t-esc="widget.format_currency_no_symbol(orderline.get_display_price())"/></b>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+        </t>
+
+
+    </t>
+</templates>

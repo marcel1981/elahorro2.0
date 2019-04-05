@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="establishment_form_view" model="ir.ui.view" >
+            <field name="name"> Establecimiento</field>
+            <field name="model">company.establishment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                              <field name="number_establish" />
+                        </group>
+                        <group>
+                             <field name="address_store"/>
+                        </group>
+                        <group>
+                             <field name="company"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_establishment_tree" model="ir.ui.view">
+            <field name="name">Establecimientos</field><!-- nombre cualquiera  -->
+            <field name="model">company.establishment</field><!-- tabla a la cual se relaciona la vista -->
+            <field name="arch" type="xml">
+                <tree><!-- campos del modelo tienda.categoria  -->
+                      <field name="company"/>
+                      <field name="number_establish"/>
+                      <field name="address_store"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_establishment_pos" model="ir.actions.act_window" >
+            <field name="name">Establecimientos</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">company.establishment</field>
+            <field name="view_mode">tree,form</field>
+                <!--<field name="views" eval="[6, 0, [establishment_form_view, pos_config_tree_view]]"/>-->
+         </record>
+         <menuitem name="Facturación electrónica" id="menu_billing_electronic" parent="base.menu_administration" sequence="3"/>
+         <menuitem name="Establecimientos" id="menu_establisment" parent="menu_billing_electronic" sequence="3" action="action_establishment_pos" />
+    </data>
+</odoo>

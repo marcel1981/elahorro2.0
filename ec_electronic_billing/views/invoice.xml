@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <!--Tree invoice-->
+         <record id="invoice_tree" model="ir.ui.view">
+              <field name="name">account.invoice.tree</field>
+              <field name="model">account.invoice</field>
+              <field name="inherit_id" ref="account.invoice_tree"/>
+              <field name="arch" type="xml">
+                  <field name="partner_id" position="before">
+                      <field name="identification"/>
+                  </field>
+                  <field name="date_invoice" position="after">
+                      <field name="sri_response"/>
+                  </field>
+                  <field name="sri_response" position="after">
+                      <field name="send_mail_client"/>
+                  </field>
+                  <field name="send_mail_client" position="after">
+                      <field name="physical_billing"/>
+                  </field>
+                   <field name="number" position="after">
+                      <field name="invoice_number"/>
+                  </field>
+              </field>
+         </record>
+
+         <!--search invoice-->
+         <!--<record id="invoice_search" model="ir.ui.view">
+              <field name="name">account.invoice.search</field>
+              <field name="model">account.invoice.report</field>
+              <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//filter[@string='Invoice']" position="attributes">
+                      <field name="partner_id.identifier"/>
+                  </xpath>
+              </field>
+         </record>-->
+         <record id="view_invoice_establishment_form" model="ir.ui.view">
+              <field name="model">account.invoice</field>
+              <field name="name">account.invoice</field>
+              <field name="inherit_id" ref="account.invoice_form" />
+              <field name="arch" type="xml">
+                  <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="identification"/>
+                  </xpath>
+                  <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="creditNoteDocResource"  attrs="{'invisible': [('type', 'in', ('out_invoice'))]}"/>
+                  </xpath>
+                   <xpath expr="//field[@name='date_invoice']" position="before">
+                    <field name="code_emission"/>
+                    <field name="establishment" readonly="1"/>
+                  </xpath>
+              </field>
+         </record>
+        <!---tab invoice electronic into invoice-->
+        <record id="view_order_form" model="ir.ui.view">
+              <field name="model">account.invoice</field>
+              <field name="name">account.invoice</field>
+              <field name="inherit_id" ref="account.invoice_form" />
+              <field name="arch" type="xml">
+                  <xpath expr="//button[@name='action_invoice_open']" position="after">
+                            <button string="ENVIAR AL SRI" type="object" name="sendInvoiceAuthorization"
+                                                      attrs="{'invisible': ['|', ('sri_response', 'in', ['2','3','4','7']), ('state', 'in', ['draft'])]}"></button>
+                        </xpath>
+                  <field name="team_id" position="after">
+                      <field name="physical_billing"
+                             attrs="{'invisible': ['|', ('sri_response', 'in', ['2','3','4','5'])]}" />
+                  </field>
+                  <notebook>
+                      <page string="Facturación Electrónica" name="electronic_invoice" >
+                          <article>
+                              <div class="row">
+                                  <div class="col-sm-6">
+                                      <h3>Información General</h3>
+
+                                          <span><strong>Número de factura SRI: </strong></span>
+                                          <field class="" name="invoice_number"  force_save="1"/><br></br>
+
+                                          <span><strong>Clave de acceso: </strong></span>
+                                          <field class="" name="access_key"  force_save="1"/><br></br>
+
+                                         <span><strong>Fecha de creaciòn: </strong></span>
+                                          <field class="" name="date_order_local" readonly="1" force_save="1"/>
+
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <h3>Información Técnica</h3>
+                                         <div>
+                                             <span><strong>Estado SRI: </strong></span>  <field class="" name="sri_response"  readonly="1" force_save="1"/>
+                                             <p><span><strong>Mensajes SRI: </strong> </span><field name="xml_sri_request_id" readonly="1"/></p>
+                                          </div>
+
+                                  </div>
+                              </div>
+                              <div class="row">
+
+                                   <div class="col-sm-12">
+                                        <h3>Documentos</h3>
+                                      <t t-if="sri_response != '1'">
+                                               <button string="Archivo RIDE" class="btn-link"  type="object" name="invoice_print"
+                                                       attrs="{'invisible': [('sri_response', 'in', ['1', '7'])]}"/><br></br>
+
+                                              <button string="Archivo XML" type="object"  name="get_xml_file"
+                                              class="btn-link" attrs="{'invisible': [('sri_response', 'in', ['1', '7'])]}"/>
+
+                                      </t>
+                                  </div>
+                              </div>
+                          </article>
+                      </page>
+                  </notebook>
+              </field>
+          </record>
+    <!-- credit note -->
+     <!--<record id="view_credit_note_form" model="ir.ui.view">
+         <field name="model">account.invoice</field>
+              <field name="name">account.invoice</field>
+              <field name="inherit_id" ref="account.invoice_form" />
+              <field name="arch" type="xml">
+                    <header>
+                        <button type="object"  string="Enviar Nota de Crédito SRI" name="action_send_invoice"
+                                attrs="{'invisible': [('type', 'in', ('out_invoice'))]}"/>
+                    </header>
+                    <xpath expr="//button[@name='190']" position="replace">
+                        <button name="190" type="action" string="Nota de crédito" groups="account.group_account_invoice"
+                                  attrs="{'invisible': ['|',('type', '=', 'out_refund'), ('state', 'not in', ('open','paid'))]}"/>
+                    </xpath>
+              </field>
+     </record>-->
+</odoo>

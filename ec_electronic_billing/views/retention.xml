@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="invoice_retention_form_view" model="ir.ui.view" >
+            <field name="name">Retención</field>
+            <field name="model">invoice.retention</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                          <button name="validateDocument" type="object" states="draft" string="Validar" class="oe_highlight"/>
+                          <button name="sendInvoiceAuthorization" type="object" states="done" string="Enviar al SRI" class="oe_highlight"
+                          attrs="{'invisible': ['|', ('sri_response', 'in', ['2','3','4','7'])]}"/>
+                          <button name="reverseAccountMove" type="object" string="Anular Retención" class="oe_highlight"
+                          attrs="{'invisible': ['|', ('state', 'in', ['draft', 'cancel'])]}"/>
+                          <field name='state' widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <group>
+                                    <field name="invoicePartner" />
+                                    <field name="partner" />
+                                    <field name="identifier" />
+                                    <field name="date" />
+                                    <field name="codDocSutent" />
+                                </group>
+                            </div>
+                            <div class="col-sm-6">
+                                <group>
+                                    <field name="code_emission" />
+                                    <field name="establishment" />
+                                    <field name="numberAuthorization" />
+                                </group>
+                            </div>
+                        </div>
+                        <notebook>
+                             <page string="Retención" name="electronic_invoice" >
+                                 <field name="tax_ids" >
+                                    <tree string="Impuestos Aplicados" editable='botoom'>
+                                        <field name="tax"/>
+                                        <field name="typeRetention"/>
+                                        <field name="account"/>
+                                        <field name="baseAmount"/>
+                                        <field name="percentage"/>
+                                        <field name="amountTaxRetention"/>
+                                    </tree>
+                                    <!--<form string="Manual Invoice Taxes">
+                                        <group>
+                                            <group>
+                            <                    <field name="tax_id"/>
+                                                <field name="account_id"/>
+                                                <field name="codeSRI"/>
+                                                <field name="base"/>
+                                                <field name="currency_id" />
+                                            </group>
+                                        </group>
+                                    </form>-->
+                                 </field>
+                                 <div>
+                                     <group class="oe_subtotal_footer oe_right">
+                                         <field name="amountRetentionDifference" readonly="1" force_save="1"/>
+                                         <field name="totalRetentionIva"/>
+                                         <field name="totalRetentionBaseImponible"/>
+                                         <field name="amountTaxRetention"/>
+                                         <field name="total"/>
+                                     </group>
+                                 </div>
+                             </page>
+                             <page string="Otra Información" name="another_information">
+                                <div class="col-sm-6">
+                                    <group>
+                                        <field name="journal"/>
+                                        <field name="user"/>
+                                        <field name="account"/>
+                                    </group>
+                                </div>
+                                <div class="col-sm-6">
+                                     <group>
+                                        <field name="move"/>
+                                        <field name="date"/>
+                                    </group>
+                                </div>
+                            </page>
+                             <page string="Facturación Electrónica" name="electronic_invoice" >
+                                 <article>
+                                      <div class="row">
+                                          <div class="col-sm-6">
+                                              <h3>Información General</h3>
+
+                                                  <span><strong>Número de factura SRI: </strong></span>
+                                                  <field class="" name="numberRetention" readonly="1" force_save="1"/><br></br>
+
+                                                  <span><strong>Clave de acceso: </strong></span>
+                                                  <field class="" name="access_key" readonly="1" force_save="1"/><br></br>
+
+                                                 <span><strong>Fecha de autorización SRI: </strong></span>
+                                                  <field class="" name="date" readonly="1" force_save="1"/>
+                                          </div>
+                                          <div class="col-sm-6">
+                                              <h3>Información Técnica</h3>
+                                                 <div>
+                                                     <span><strong>Estado SRI: </strong></span>  <field class="" name="sri_response" readonly="1" force_save="1"/>
+                                                     <p><span><strong>Mensajes SRI: </strong> </span><field name="xmlSriRequestId" readonly="1"/></p>
+                                                  </div>
+
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                           <div class="col-sm-12">
+                                                <h3>Documentos</h3>
+                                              <t t-if="sri_response != '1'">
+                                                       <!--<button string="Archivo RIDE" class="btn-link"  type="object" name="invoice_print"
+                                                               attrs="{'invisible': [('sri_response', 'in', ['1', '7'])]}"/><br></br>-->
+                                                      <button string="Archivo XML" type="object"  name="getXmlfile"
+                                                      class="btn-link" attrs="{'invisible': [('sri_response', 'in', ['1', '7'])]}"/>
+
+                                                      <button string="PDF" type="object"  name="printRetention"
+                                                      class="btn-link" attrs="{'invisible': [('sri_response', 'in', ['1', '7'])]}"/>
+
+                                              </t>
+                                          </div>
+                                      </div>
+                                  </article>
+                             </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_invoice_retention_tree" model="ir.ui.view">
+            <field name="name">Retenciones</field><!-- nombre cualquiera  -->
+            <field name="model">invoice.retention</field><!-- tabla a la cual se relaciona la vista -->
+            <field name="arch" type="xml">
+                <tree>
+                      <field name="identifier" />
+                      <field name="partner" />
+                      <field name="date" />
+                      <field name="numberRetention" />
+                      <field name="sri_response" />
+                      <field name="sendMailclient" />
+                      <field name="invoicePartner" />
+                      <field name="invoicePartner" />
+                      <field name="amountTaxRetention" />
+                      <field name="total" />
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_retention_search" model="ir.ui.view">
+            <field name="name">Búsqueda de Retenciones</field><!-- nombre cualquiera  -->
+            <field name="model">invoice.retention</field><!-- tabla a la cual se relaciona la vista -->
+            <field name="arch" type="xml">
+                <search><!-- campos del modelo tienda.categoria  -->
+                    <field name="partner"/>
+                    <field name="identifier"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_invoice_retention_view" model="ir.actions.act_window" >
+            <field name="name">Retenciones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.retention</field>
+            <field name="view_mode">tree,form,search</field>
+         </record>
+
+        <menuitem name="Comprobantes de Retenciones" id="menu_retention" parent="account.menu_finance_payables_documents" sequence="2" action="action_invoice_retention_view" />
+
+     </data>
+</odoo>

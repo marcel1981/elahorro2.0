@@ -1,0 +1,189 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* bi_auto_sku_generate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-22 12:21+0000\n"
+"PO-Revision-Date: 2017-12-22 12:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "000000000001"
+msgstr "000000000001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "00000000001"
+msgstr "00000000001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "0000000001"
+msgstr "0000000001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "000000001"
+msgstr "000000001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "00000001"
+msgstr "00000001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "0000001"
+msgstr "0000001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "000001"
+msgstr "000001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "00001"
+msgstr "00001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "0001"
+msgstr "0001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "001"
+msgstr "001"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,sequence:0
+msgid "01"
+msgstr "01"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_attribute
+msgid "Attribute"
+msgstr "Atributo"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,product:0
+msgid "First Four Digit"
+msgstr "First Four Digit"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,attribute:0
+msgid "First Latter"
+msgstr "First Latter"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,product:0
+msgid "First One Digit"
+msgstr "First One Digit"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,product:0
+msgid "First Three Digit"
+msgstr "First Three Digit"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,product:0
+msgid "First Two Digit"
+msgstr "First Two Digit"
+
+#. module: bi_auto_sku_generate
+#: selection:product.setting.sku,attribute:0
+msgid "First Two Letter"
+msgstr "First Two Letter"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_id
+msgid "ID"
+msgstr "ID"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_write_date
+msgid "Last Updated on"
+msgstr "Última actualización por"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model,name:bi_auto_sku_generate.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_sequence
+msgid "Pattern"
+msgstr "Secuencia"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model,name:bi_auto_sku_generate.model_product_product
+msgid "Product"
+msgstr "Variantes de producto"
+
+#. module: bi_auto_sku_generate
+#: model:ir.ui.menu,name:bi_auto_sku_generate.product_sku_config
+msgid "Product SKU Configuation"
+msgstr "Configuracion SKU del Producto"
+
+#. module: bi_auto_sku_generate
+#: model:ir.actions.act_window,name:bi_auto_sku_generate.action_product_sku_config
+#: model:ir.ui.menu,name:bi_auto_sku_generate.menu_product_sku_config
+#: model:ir.ui.view,arch_db:bi_auto_sku_generate.product_setting_sku_form_view
+msgid "Product SKU Configuration"
+msgstr "Configuracion SKU del Producto"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_product
+msgid "Product Variant"
+msgstr "Descripción de produto"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model.fields,field_description:bi_auto_sku_generate.field_product_setting_sku_hyphens_opt
+msgid "Use hyphens"
+msgstr "Usar Hyphens"
+
+#. module: bi_auto_sku_generate
+#: model:ir.model,name:bi_auto_sku_generate.model_product_setting_sku
+msgid "product.setting.sku"
+msgstr "product.setting.sku"
+

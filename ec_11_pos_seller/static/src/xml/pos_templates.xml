@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="PosTicket">
+        <t t-jquery=".receipt-user" t-operation="append">
+            <t t-if="order.vendedora_id">
+                Vendedora mostrador: <t t-esc="order.get_vendedora_id(order.vendedora_id)"/>
+            </t>
+        </t>
+    </t>
+
+
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery="div.payment-buttons" t-operation="append">
+            <div class='button js_set_pos_salesman'>
+                <i class='fa fa-user' />
+                <span class='js_vendedora_name'>
+                    Vendedoras de Mostrador
+                </span>
+            </div>
+        </t>
+    </t>
+
+
+    <!--pantalla para pintar los vendedores-->
+    <t t-name="VendedorasListScreenWidget">
+        <div class="clientlist-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Cancel
+                    </span>
+                    <span class='searchbox'>
+                        <input placeholder='Search Vendedoras' />
+                        <span class='search-clear'></span>
+                    </span>
+                    <span class='searchbox'></span>
+                    <span class='button next oe_hidden highlight'>
+                        Select Customer
+                        <i class='fa fa-angle-double-right'></i>
+                    </span>
+                </section>
+                <section class="full-content">
+                    <div class='window'>
+                        <section class='subwindow collapsed'>
+                            <div class='subwindow-container collapsed'>
+                                <div class='subwindow-container-fix client-details-contents'>
+                                </div>
+                            </div>
+                        </section>
+                        <section class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix touch-scrollable scrollable-y'>
+                                    <table class='client-list'>
+                                        <thead>
+                                            <tr>
+                                                <th>Identificacion</th>
+                                                <th>Nombre</th>
+                                                <th>Codigo barras</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class='vendedoras-list-contents'>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="VendedoraLine">
+        <tr class='client-line' t-att-data-id='vendedora.id'>
+            <td><t t-esc='vendedora.identification' /></td>
+            <td><t t-esc='vendedora.name' /></td>
+            <td><t t-esc='vendedora.barcode' /></td>
+        </tr>
+    </t>
+</templates>

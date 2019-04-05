@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="paperformat_pos_ticket" model="report.paperformat">
+			<field name="name">Reprint Ticket(POS)</field>
+			<field name="default" eval="True" />
+			<field name="format">custom</field>
+			<field name="page_height">175</field>
+			<field name="page_width">65</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">3</field>
+			<field name="margin_bottom">3</field>
+			<field name="margin_left">3</field>
+			<field name="margin_right">3</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">3</field>
+			<field name="dpi">90</field>
+		</record>
+
+
+        <report id="action_report_pos_ticket"
+			model="pos.order"
+			report_type="qweb-pdf"
+			string="Boleta electronica"
+			menu="False"
+			name="ec_11_reprint_ticket.report_pos_ticket"
+			file="ec_11_reprint_ticket.report_pos_ticket"
+			paperformat="ec_11_reprint_ticket.paperformat_pos_ticket"
+			print_report_name="(object._get_printed_report_name())" />
+
+	</data>
+
+
+
+
+    <report
+            string="Imprimir Ticket"
+            id="action_print_ticket"
+            model="pos.order"
+            report_type="qweb-pdf"
+            name="ec_11_reprint_ticket.bo_receipt"
+            file="ec_11_reprint_ticket.bo_receipt"
+            attachment_use="True"
+			print_report_name = "'FV#'+(object.access_key or '')"
+            attachment="('FV#'+(object.access_key or '').replace('/','')+'.pdf')"
+  />
+
+
+    <!--Form order-->
+         <record id="view_pos_config_kanban" model="ir.ui.view">
+           <field name="name">pos.config.kanban.view</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+             <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='refund']" position="after">
+                   <button string="Imprimir Ticket" type="object" name="printTicket"/>
+                </xpath>
+            </field>
+         </record>
+
+</odoo>

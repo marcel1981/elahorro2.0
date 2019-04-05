@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="action_product_sku_config" model="ir.actions.act_window">
+            <field name="name">Product SKU Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.setting.sku</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+
+    <record id="product_setting_sku_form_view" model="ir.ui.view">
+        <field name="name">product.setting.sku.form.view</field>
+        <field name="model">product.setting.sku</field>
+        <field name="arch" type="xml">
+            <form string="Product SKU Configuration">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+
+                            <label for="use_attribute"/>
+                            <div class="o_row">
+                                <field name="use_attribute"/>
+                                <field name="attribute" nolabel="1" attrs="{'invisible': [('use_attribute', '=', False)]}"/>
+                            </div>
+                                <field name="pattern"/>
+                        </group>
+                        <group>
+                            <field name="product"/>
+
+                            <label for="use_category"/>
+                            <div class="o_row">
+                                <field name="use_category"/>
+                                <field name="category" nolabel="1" attrs="{'invisible': [('use_category', '=', False)]}"/>
+                            </div>
+                            <field name="hyphens_opt"/>
+                        </group>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+        <!--<record id="view_product_template_form_code_inherit" model="ir.ui.view">
+            <field name="name">view.product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                    <field name="default_code" position="replace">
+                    <field name="default_code1" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+           </field>
+            </field>
+        </record>-->
+
+        <record id="view_product_template_form_code_tree_inherit" model="ir.ui.view">
+            <field name="name">view.product.template.tree.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="replace">
+                <field name="default_code1"/></field>
+                </field>
+        </record>
+
+        <!--<record id="view_product_code_tree_inherit" model="ir.ui.view">
+            <field name="name">view.product.product.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="replace">
+                    <field name="default_code1"/>
+                </field>
+            </field>
+        </record>-->
+
+        <record id="view_product_form_code_tree_inherit" model="ir.ui.view">
+            <field name="name">view.product.product.tree.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="replace">
+                    <field name="default_code1"/>
+                </field>
+            </field>
+        </record>
+
+
+    <menuitem id="product_sku_config" name="Product SKU Configuation" parent="base.menu_custom" sequence="14"/>
+    <menuitem action="action_product_sku_config" id="menu_product_sku_config" parent="product_sku_config"/>
+
+
+  </data>
+</openerp>
+        

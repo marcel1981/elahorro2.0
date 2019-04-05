@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template_client" inherit_id="point_of_sale.template" name="Template_client">
+    <!--form client-->
+     <t t-extend="ClientDetailsEdit">
+        <t t-jquery=".client-details.edit" t-operation="replace">
+            <section class='client-details edit'>
+                <div class='client-picture'>
+                    <t t-if='!partner.id'>
+                        <i class='fa fa-camera'></i>
+                    </t>
+                    <t t-if='partner.id'>
+                        <img t-att-src='widget.partner_icon_url(partner.id)' />
+                    </t>
+                    <input type='file' class='image-uploader'></input>
+                </div>
+                <input class='detail client-name' name='name' t-att-value='partner.name' placeholder='Name'></input>
+                <div class='edit-buttons'>
+                    <div class='button undo'><i class='fa fa-undo' /></div>
+                    <div class='button save'><i class='fa fa-floppy-o' /></div>
+                </div>
+                <div class='client-details-box clearfix'>
+                    <div class='client-details-left'>
+
+                        <div class='client-detail'>
+                            <span class='label'>Tipo Documento</span>
+                            <select class='detail client-type_identifier' name='type_identifier'>
+                                <option value='05' t-att-selected="partner.type_identifier ? (('05' === partner.type_identifier) ? true : undefined) : undefined">CÉDULA</option>
+                                <option value='04' t-att-selected="partner.type_identifier ? (('04' === partner.type_identifier) ? true : undefined) : undefined">RUC</option>
+                                <option value='06' t-att-selected="partner.type_identifier ? (('06' === partner.type_identifier) ? true : undefined) : undefined">PASAPORTE</option>
+                            </select>
+                        </div>
+                        <div class='client-detail'>
+                            <span class='label'>Identificación</span>
+                            <input class='detail client-identifier' name='identification' t-att-value='partner.identification || ""' ></input>
+                        </div>
+                        <div class='client-detail'>
+                            <span class='label'>Dirección</span>
+                            <input class='detail client-address-street' name='street'       t-att-value='partner.street' placeholder='Street'></input>
+                        </div>
+                        <div class='client-detail'>
+                            <span class='label'>Ciudad</span>
+                            <input class='detail client-address-city'   name='city'         t-att-value='partner.city || "Quito"' placeholder='City'></input>
+                        </div>
+                        <div class='client-detail'>
+                            <span class='label'>Pais</span>
+                            <select class='detail client-address-country' name='country_id'>
+                                <!--<option value=''>None</option>
+                                <t t-foreach='widget.pos.countries' t-as='country'>
+                                    <option t-att-value='country.id' t-att-selected="partner_country_id ? ((country.id === partner.country_id[0]) ? true : undefined) : undefined">
+                                        <t t-esc='country.name'/>
+                                    </option>
+                                </t>-->
+
+                                <t t-foreach='widget.pos.countries' t-as='country'>
+                                    <t t-if="country.name == 'Ecuador'">
+                                         <option t-att-value='country.id' t-att-selected="partner_country_id ? ((country.id === partner.country_id[0]) ? true : undefined) : undefined">
+                                            <t t-esc='country.name'/>
+                                        </option>
+                                    </t>
+                                </t>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class='client-details-right'>
+                         <div class='client-detail'>
+                              <span class='label'>Email</span>
+                              <input class='detail client-email'  name='email'    type='email'    t-att-value='partner.email || "facturas@elahorro.com.ec"'></input>
+                          </div>
+                          <div class='client-detail'>
+                              <span class='label'>Teléfono</span>
+                              <input class='detail client-phone'  name='phone'    type='tel'      t-att-value='partner.phone || ""'></input>
+                          </div>
+                    </div>
+                </div>
+            </section>
+        </t>
+     </t>
+
+    <!-- preview client-->
+    <t t-extend="ClientDetails">
+        <t t-jquery="div.client-details-left div:first-child" t-operation="before">
+            <div class='client-detail'>
+				<span class='label'>ID</span>
+				<span class='detail client-identification'><t t-esc='partner.identification || "Sin Identificación"' /></span>
+			</div>
+        </t>
+    </t>
+    <!-- list client-->
+     <t t-extend="ClientListScreenWidget">
+        <t t-jquery="table.client-list thead tr th:first-child" t-operation="before">
+            <th style="width: 120px;">Identificación</th>
+        </t>
+    </t>
+    <t t-extend="ClientLine">
+        <t t-jquery="tr td:first-child" t-operation="before">
+            <td><t t-esc='partner.identification or "Sin identificación"' /></td>
+        </t>
+    </t>
+
+</templates>

@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+        <record id="pos_salesman_form_view" model="ir.ui.view">
+            <field name="name">pos.salesman.form.view</field>
+            <field name="model">pos.salesman</field>
+            <field name="arch" type="xml">
+                <form string="Form POS Salesman">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="identification"/>
+                            <field name="active"/>
+                            <field name="barcode"/>
+                            <field name="location"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--tree view pos salesman-->
+        <record id="pos_salesman_tree_view" model="ir.ui.view">
+            <field name="name">pos.salesman.tree.view</field>
+            <field name="model">pos.salesman</field>
+            <field name="arch" type="xml">
+                <tree string="Tree POS Salesman">
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="barcode"/>
+                    <field name="location"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--search pos salesman-->
+        <record id="pos_salesman_search_view" model="ir.ui.view">
+            <field name="name">pos.salesman.search</field>
+            <field name="model">pos.salesman</field>
+            <field name="arch" type="xml">
+                <search string="Pos Salesman">
+                    <field name="name" string="Nombre"/>
+                    <field name="barcode" string="Barcode"/>
+                    <field name="location" string="Ubicacion"/>
+                </search>
+             </field>
+        </record>
+
+        <!--menus pos salesman-->
+        <record id="action_pos_salesman" model="ir.actions.act_window">
+            <field name="name">Vendedoras POS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.salesman</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="pos_salesman_menu_categ_comisiones"
+                  name="Comisiones"
+                  parent="point_of_sale.menu_point_root"
+                  sequence="11"/>
+
+        <menuitem id="pos_salesman_menu_action_vendedoras"
+                  name="Vendedoras de mostrador"
+                  parent="pos_salesman_menu_categ_comisiones"
+                  action="action_pos_salesman"
+                  sequence="1"/>
+
+
+    </data>
+</odoo>

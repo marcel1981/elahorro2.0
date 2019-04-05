@@ -1,0 +1,23 @@
+<odoo>
+  <data>
+    <!-- Inherit Form View to Modify it -->
+    <record id="pos_config_view_form_pos_location_id" model="ir.ui.view">
+        <field name="name">pos.config.form.pos.location</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label for="pos_location_id"/>
+                        <field name="pos_location_id"/>
+
+                    </div>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="account_journal_form_view_inherit" model="ir.ui.view" >
+            <field name="name">Account Tax</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <field name="amount_type" position="after">
+                    <group>
+                          <field name="typeRetention"/>
+                          <field name="codeSRI"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

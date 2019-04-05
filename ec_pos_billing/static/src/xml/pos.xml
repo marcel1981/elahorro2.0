@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template_partner" inherit_id="point_of_sale.template" name="Template_partner">
+     <!--<t t-extend="ActionpadWidget">-->
+         <!--<t t-query=".actionpad" t-operation="replace">
+             <div class="actionpad">
+                 <button t-attf-class='button set-customer #{ ( widget.pos.get_client() and widget.pos.get_client().name.length > 10) ? "decentered" : "" }' >
+                     <i class='fa fa-user' />
+                     <t t-if="widget.pos.get_client()">
+                         <t t-esc="widget.pos.get_client().name" />
+                     </t>
+                     <t t-if="!widget.pos.get_client()">
+                         never
+                     </t>
+                 </button>
+                 <button class='button pay'>
+                     <div class='pay-circle'>
+                         <i class='fa fa-chevron-right' />
+                     </div>
+                     Payment
+                 </button>
+             </div>
+         </t>-->
+     <!--</t>-->
+
+    <!--<t t-name="ActionpadWidget">
+        <div class="actionpad">
+
+            <button t-attf-class='button set-customer #{ ( widget.pos.get_client() and widget.pos.get_client().name.length > 10) ? "decentered" : "" }' >
+                <i class='fa fa-user' />
+                <t t-if="widget.pos.get_client()">
+                    <t t-esc="widget.pos.get_client().name" />
+                </t>
+                <t t-if="!widget.pos.get_client()">
+                     <t t-esc="widget.pos.set_default_client()" />
+                </t>
+            </button>
+            <button class='button pay'>
+                <div class='pay-circle'>
+                    <i class='fa fa-chevron-right' />
+                </div>
+                Payment
+            </button>
+            <button id="discount" class="mode-button" data-mode='discount'>Disc</button>
+        </div>
+    </t>-->
+
+    <t t-name="NumpadWidget" t-operation="replace">
+         <div class="numpad">
+             <button class="input-button number-char">1</button>
+             <button class="input-button number-char">2</button>
+             <button class="input-button number-char">3</button>
+             <button class="mode-button" data-mode='quantity'>Qty</button>
+             <br />
+             <button class="input-button number-char">4</button>
+             <button class="input-button number-char">5</button>
+             <button class="input-button number-char">6</button>
+             <button class="mode-button" data-mode='discount'>Disc</button>
+             <br />
+             <button class="input-button number-char">7</button>
+             <button class="input-button number-char">8</button>
+             <button class="input-button number-char">9</button>
+             <button class="input-button numpad-backspace">
+                 <img style="pointer-events: none;" src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" />
+             </button>
+             <br />
+             <button class="input-button number-char">0</button>
+             <button class="input-button numpad-minus" >+/-</button>
+             <button class="input-button number-char">.</button>
+         </div>
+    </t>
+    <!--<button class="mode-button" data-mode='discount'>Disc</button>-->
+
+
+
+</templates>

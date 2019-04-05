@@ -1,0 +1,67 @@
+<odoo>
+    <data>
+        <record id="res_company_form_view_inherit" model="ir.ui.view" >
+            <field name="name">Compañias</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+             <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <!--<label for="name" position="replace">
+                     <label string="ID" for="name"  />
+                </label>-->
+                <field name="vat" position="replace">
+                     <field string="R.U.C" name="vat"  />
+                </field>
+
+               <notebook>
+                    <page string="Firma Electrónica">
+                       <!-- campos del modelo tienda.categoria -->
+                        <header>
+                            <button name="action_is_valid_signature" string="Comprobar Certificado" type='object' states="sin_verificar, vencido" class="btn-success"
+                                    attrs="{'invisible': [('state', 'in', ['vencido', 'aprobado'])]}"/>
+                            <button name="action_signature_delete" string="Eliminar Cerficado" type='object' states="aprobado, vencido" class="btn-danger"/>
+                            <field name='state' widget="statusbar"/>
+                        </header>
+                        <group>
+                             <field name="file_electronic_signature_filename" invisible="1"/>
+                             <field widget="binary" name="file_electronic_signature" filename="file_electronic_signature_filename" />
+                             <field name="password_electronic_signature" password="True"/>
+                              <field name="owner_signature"  />
+                              <field name="date_expirate" class="text-danger" />
+                        </group>
+                    </page>
+                   <page string="Datos emisor">
+                        <group>
+                             <field name="bill_electronic"/>
+                             <field name="full_name"/>
+                             <field name="name_comercial"/>
+                             <field name="number_resolution"/>
+                             <field name="keep_accounting"/>
+                        </group>
+                   </page>
+                    <page string="Conexión">
+                       <group>
+                            <field name="url_test"/>
+                            <field name="url_production"/>
+                            <field name="env_type"/>
+                            <field name="max_time"/>
+                        </group>
+                    </page>
+
+               </notebook>
+            </field>
+        </record>
+
+        <!--Tree companies-->
+         <record id="company_tree" model="ir.ui.view">
+              <field name="name">res.company.tree</field>
+              <field name="model">res.company</field>
+              <field name="inherit_id" ref="base.view_company_tree"/>
+              <field name="arch" type="xml">
+                  <field name="partner_id" position="after">
+                      <field name="bill_electronic"/>
+                  </field>
+              </field>
+         </record>
+    </data>
+</odoo>

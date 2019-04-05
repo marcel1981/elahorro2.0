@@ -1,0 +1,170 @@
+<odoo>
+    <data>
+        <template id="report_retention">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout"  position="replace">
+                            <div class="row" style="border:0px; padding:0px;">
+                                    <div class="col-xs-5"  style="margin:0px 35px 0px 19px; border:1px solid black; border-radius: 10px; padding:2%; height: 305px;">
+                                        <h3><span t-esc="res_company.full_name"/></h3><br></br>
+                                        <p style="font-size: 14px;" >
+                                            <span><strong>DIRECCIÓN MATRIZ: </strong></span><strong></strong><span t-esc="res_company.street"/><br/>
+                                        </p>
+                                        <p style="font-size: 14px;">
+                                            <span><strong>DIRECCIÓN SUCURSAL: </strong></span>
+                                            <span t-esc="o.code_emission.number_establishment.address_store"></span><br/><br></br>
+                                        </p>
+                                        <p style="font-size: 14px;">
+                                            <span><strong>CONTRIBUYENTE ESPECIAL NRO: </strong></span>
+                                            <span t-esc="res_company.company_registry or '000' "/><br/>
+                                        </p>
+                                        <p style="font-size: 14px;">
+                                            <span><strong>OBLIGADO A LLEVAR CONTABILIDAD: </strong> SI</span>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-xs-6"  style="border: 1px solid black;border-radius: 10px; padding:2%; height:305px; font-size: 13px;">
+                                        <span><strong>R.U.C.: </strong></span> <span t-esc="res_company.vat"/><br/>
+                                        <span><h4 style="letter-spacing: 0.3em"><strong>COMPROBANTE DE RETENCIÓN</strong></h4></span><br/>
+                                        <span><strong>No.</strong><span t-esc="o.numberRetention"/></span><br/>
+                                        <span><strong>NÚMERO DE AUTORIZACIÓN</strong></span><br/>
+                                        <span t-esc="o.access_key"/><br/>
+                                        <span><strong>FECHA Y HORA DE AUTORIZACIÓN: </strong></span ><span t-esc="o.date"/><br/>
+                                        <span><strong>AMBIENTE: </strong></span><span t-esc="o.establishment.company.env_type == '1'  and 'Pruebas' or 'Producción'"/><br/>
+                                        <span><strong>EMISIÓN: </strong> Normal</span><br/>
+                                        <span><strong>CLAVE DE ACCESO</strong></span><br/>
+                                        <div class="text-align: left;">
+                                            <img style="text-align: left;" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1' % ('Code128', o.access_key, 410, 60)"/>
+                                        </div><br/>
+
+                                    </div>
+
+                            </div><br/>
+
+                           <section style="padding-left:2%;">
+                               <div class="row" style="border: 1px solid black; border-radius: 10px; padding:1%; margin-right:2px">
+                                <div class="col-xs-6">
+                                    <div style="padding-left: 0px;">
+                                         <span><strong>RAZÓN SOCIAL:</strong></span>
+                                         <span t-esc="o.partner.name.upper()"/>
+                                    </div>
+                                     <div style="padding-left: 0px;">
+                                         <span><strong>FECHA:</strong></span>
+                                         <span t-field="o.date" t-field-options="{&quot;format&quot;: &quot;dd-MM-yyyy&quot;}" />
+                                    </div>
+                                    <div style="padding-left: 0px;">
+                                        <span><strong>DIRECCIÓN:</strong></span>
+                                         <span t-esc="o.partner.contact_address"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div  style="padding-left: 0px; padding-right: 0px;">
+                                        <span><strong>IDENTIFICACIÓN:</strong></span>
+                                         <span t-esc="o.partner.identification"/>
+                                    </div>
+                                     <!--<div style="padding-left: 0px;">
+                                        <span><strong>GUÍA REMISIÓN:</strong></span>
+                                    </div>-->
+                                </div>
+                            </div><br/>
+                           </section>
+                            <table style="width: 100%;border-collapse: collapse; " class="table table-bordered">
+                                    <tbody >
+                                        <tr style="border: 1px solid black;">
+                                            <td class="text-center"><h6><strong>Comprobante</strong></h6></td>
+                                            <td class="text-center"><h6><strong>Número</strong></h6></td>
+                                            <td class="text-center"><h6><strong>Fecha Emisión</strong></h6></td>
+                                            <td class="text-center"><h6><strong>Ejercicio Fiscal</strong></h6></td>
+                                            <td class="text-center"><h6><strong>Base Imponible para la Retención</strong></h6></td>
+                                            <td class="text-center"><h6><strong>Impuesto</strong></h6></td>
+                                            <td class="text-center"><h6><strong>Porcentaje Retenión</strong></h6></td>
+                                            <td class="text-center"><h6><strong>Valor Retenido</strong></h6></td>
+                                        </tr>
+                                        <t t-foreach="o.tax_ids" t-as="line">
+                                            <tr style="border: 1px solid black; text-align:center;">
+                                                <td class="text-center"><span>FACTURA</span></td>
+                                                <td class="text-center"><span t-esc="o.codDocSutent"/></td>
+                                                <td><span class="text-center" t-esc="o.dateAuth"  /></td>
+                                                <td><span class="text-center" t-esc="o.fiscalPeriod"/></td>
+                                                <td><span class="text-center" t-esc="line.baseAmount"/></td>
+                                                <td><span class="text-center" t-esc="line.typeRetention == '1'  and 'Renta' or 'IVA'"/></td>
+                                                <td><span class="text-center" t-esc="line.percentage"/></td>
+                                                <td><span class="text-right" t-field="line.amountTaxRetention" /></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                            </table><br></br>
+
+                             <div class="row" >
+                                 <div class="col-xs-7" >
+                                    <div  style="border: 1px solid black; margin-right:4px; padding:3%; border-radius: 10px; ">
+                                        <span><strong>Información Adicional</strong></span><br/><br/>
+                                        <span><strong>Dirección: </strong></span><span t-esc="o.partner.street or '**'"/><br/>
+                                        <span><strong>Teléfono: </strong></span><span t-esc="o.partner.phone or '**'"/><br/>
+                                        <span><strong>Email: </strong></span><span t-esc="o.partner.email"/><br/>
+                                    </div><br/>
+                                     <!--<div  style="margin-right:4px; padding:3%;">
+                                          <table class="table table-bordered">
+                                              <tr>
+                                                  <td class="text-center"><h6><strong>Formas de Pago</strong></h6></td>
+                                                  <td class="text-center"><h6><strong>Valor</strong></h6></td>
+                                              </tr>
+                                              <t t-foreach="o.payment_move_line_ids" t-as="line">
+                                                  <tr>
+                                                      <td><span class="text-center" t-esc="line.journal_id.display_name"/></td>
+                                                      <td>$<span class="text-center" t-set="qty"
+                                                                 t-value="line.credit+line.amount_residual"/></td>
+                                                      <td>$<span t-esc="sum([line.credit, line.amount_residual])"/></td>
+
+                                                  </tr>
+                                              </t>
+                                          </table>
+
+                                    </div><br/>-->
+
+                                 </div>
+                                  <div class="col-xs-5">
+                                      <table class="table table-bordered">
+                                             <!--<tr>
+                                                 <td><span><strong>Subtotal IVA 12%</strong></span></td>
+                                                 <td><span t-field="o.amount_tax"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                             </tr>
+                                             <tr>
+                                                 <td> <span><strong>Subtotal IVA 0%</strong></span></td>
+                                                 <td>0.0</td>
+                                             </tr>
+                                             <tr>
+                                                 <td><span><strong>Subtotal</strong></span></td>
+                                                 <td><span t-field="o.amount_untaxed"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                             </tr>
+                                             <tr>
+                                                 <td><span><strong>Descuento</strong></span></td>
+                                                 <td>0.0</td>
+                                             </tr>
+                                             <tr>-->
+                                               <!-- <t t-foreach="o._get_tax_amount_by_group()" t-as="amount_by_group">
+                                                    <div class="row" style="text-align: right;">
+                                                        <div class="col-xs-7" style="border-bottom: 1px solid darkgray; padding-left: 0px;">
+                                                            <strong><span t-esc="amount_by_group[0]"/></strong>
+                                                        </div>
+                                                        <div class="col-xs-5" style="border-bottom: 1px solid darkgray;">
+                                                            <span t-esc="amount_by_group[1]"
+                                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                        </div>
+                                                    </div>
+                                                </t>-->
+                                             <!--</tr>
+                                             <tr>
+                                                 <td><strong><span>TOTAL</span></strong></td>
+                                                 <td><span t-field="o.amount_total"
+                                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                             </tr>-->
+                                      </table>
+                                  </div>
+                             </div>
+                    </t>
+                </t>
+        </template>
+    </data>
+</odoo>

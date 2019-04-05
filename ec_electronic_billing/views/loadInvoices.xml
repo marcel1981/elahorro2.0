@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+         <record id="view_load_invoice_tree" model="ir.ui.view">
+            <field name="name">Load Invoice</field><!-- nombre cualquiera  -->
+            <field name="model">load.invoice</field><!-- tabla a la cual se relaciona la vista -->
+            <field name="arch" type="xml">
+                <tree><!-- campos del modelo tienda.categoria  -->
+                      <field name="fileInvoice"/>
+                </tree>
+            </field>
+         </record>
+
+        <record id="form_load_invoice" model="ir.ui.view" >
+            <field name="name"> LOad Invoice</field>
+            <field name="model">load.invoice</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="loadInvoices" string="Load Invoice" type='object'  class="btn-danger"/>
+                    </header>
+                    <sheet>
+                        <group>
+                              <field name="fileInvoice" />
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_send_invoice" model="ir.actions.act_window" >
+            <field name="name">Carcarg invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">load.invoice</field>
+            <field name="view_mode">tree,form</field>
+                <!--<field name="views" eval="[6, 0, [establishment_form_view, pos_config_tree_view]]"/>-->
+         </record>
+         <menuitem name="Cargar Facturas" id="menuLoadInvoice" parent="menu_billing_electronic" sequence="3"
+                   action="action_send_invoice" />
+    </data>
+</odoo>

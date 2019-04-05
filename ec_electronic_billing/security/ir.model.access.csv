@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_invoice_authorization,accessinvoice.authorization,model_invoice_authorization,account.group_account_invoice,1,1,1,1
+access_cron_invoice,access.cron.invoice,model_cron_invoice,account.group_account_invoice,1,1,1,1
+access_document_electronic,access.document.electronic,model_document_electronic,account.group_account_invoice,1,1,1,1
+access_company_establishment,access.company.establishment,model_company_establishment,account.group_account_invoice,1,1,1,1
+access_invoice_point_emission,access.invoice.point.emission,model_invoice_point_emission,account.group_account_invoice,1,1,1,1
+access_sri_xml_send,access.sri.xml.send,model_sri_xml_send,account.group_account_invoice,1,1,1,1
+access_invoice_retention,access.invoice.retention,model_invoice_retention,account.group_account_invoice,1,1,1,1
+access_account_retention_tax,access.account.retention.tax,model_account_retention_tax,account.group_account_invoice,1,1,1,1
+access_load_invoice,access.load.invoice,model_load_invoice,account.group_account_invoice,1,1,1,1

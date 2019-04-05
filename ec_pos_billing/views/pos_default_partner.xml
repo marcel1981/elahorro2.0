@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_res_partner_form" model="ir.ui.view">
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//h2[@name='order']" position="before">
+                <group string="Cliente por defecto">
+                    <field name="default_partner_id"/>
+                </group>
+            </xpath>
+	    </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <!--inherit tree view account invoice-->
+        <record id="invoice_tree_inherit_vendedoras" model="ir.ui.view">
+            <field name="name">account.invoice.tree.vendedoras.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="pos_salesman_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!--inherit invoice form-->
+        <record id="invoice_form_inherit_vendedoras_location" model="ir.ui.view">
+            <field name="name">account.invoice.form.vendedoras.location.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="pos_location_id"/>
+                    <field name="pos_salesman_id" domain="[('location', '=', pos_location_id)]"
+                           attrs="{'readonly': [('pos_location_id','=',False)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

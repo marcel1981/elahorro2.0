@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+		<record id="view_selective_send_mail_wizard" model="ir.ui.view">
+			<field name="name">Send Mails For Multiple Clients</field>
+			<field name="model">send.mail.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Generate EAN">
+					<section>
+						<p>Se enviará un correo electrónica   al cliente, unicamente las facturas que esten en estado <strong>AUTORIZADO</strong>.</p>
+					</section>
+					<footer>
+						<button name="send_mail" string="Enviar email" type="object" class="oe_highlight" />
+					</footer>
+				</form>
+			</field>
+		</record>
+        <act_window
+			name="Enviar email al cliente"
+			res_model="send.mail.wizard"
+			src_model="account.invoice"
+			view_mode="form"
+			view_type="form"
+			target="new"
+			multi="True"
+			key2="client_action_multi"
+			id="view_send_mail"
+			view_id="view_selective_send_mail_wizard"
+			context="{'action':'invoice'}"
+		/>
+
+		<record id="view_selective_send_mail_block_wizard" model="ir.ui.view">
+			<field name="name">Send Mails block For Multiple Clients</field>
+			<field name="model">send.mail.block.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Generate EAN">
+					<section>
+						<p>Se enviará un correo electrónica   a los clientes, unicamente las facturas que esten en estado <strong>AUTORIZADO</strong>.</p>
+					</section>
+					<footer>
+						<button name="send_mail" string="Enviar email" type="object" class="oe_highlight" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<act_window
+			name="Notificación de correo manual"
+			res_model="send.mail.block.wizard"
+			src_model="account.invoice"
+			view_mode="form"
+			view_type="form"
+			target="new"
+			multi="True"
+			key2="client_action_multi_block"
+			id="view_send_mail_block"
+			view_id="view_selective_send_mail_block_wizard"
+			context="{'action':'invoice'}"
+		/>
+    </data>
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="point_emission_form_view" model="ir.ui.view" >
+            <field name="name">Punto de emisión</field>
+            <field name="model">invoice.point.emission</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                              <field name="number_establishment" />
+
+                             <field name="code_emission"/>
+
+                             <field name="point_of_sale"/>
+
+                             <field name="current_number_invoice"  />
+
+                             <field name="current_credit_note" />
+
+                             <field name="currentRetention" />
+                             <field name="is_retention" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_point_emission_tree" model="ir.ui.view">
+            <field name="name">Puntos de emisión</field><!-- nombre cualquiera  -->
+            <field name="model">invoice.point.emission</field><!-- tabla a la cual se relaciona la vista -->
+            <field name="arch" type="xml">
+                <tree><!-- campos del modelo tienda.categoria  -->
+                      <field name="number_establishment"/>
+                      <field name="code_emission"/>
+                      <field name="point_of_sale"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_point_emission" model="ir.actions.act_window" >
+            <field name="name">Punto de emisión</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.point.emission</field>
+            <field name="view_mode">tree,form</field>
+                <!--<field name="views" eval="[6, 0, [pos_config_form_view, pos_config_tree_view]]"/>-->
+         </record>
+         <menuitem name="Punto de emisión" id="menu_point_emision" parent="menu_billing_electronic" sequence="3" action="action_point_emission" />
+    </data>
+</odoo>

@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+         <!--Tree Order-->
+         <record id="pos_order_tree" model="ir.ui.view">
+              <field name="name">pos.order.tree</field>
+              <field name="model">pos.order</field>
+              <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+              <field name="arch" type="xml">
+                  <field name="date_order" position="after">
+                      <field name="sri_response"/>
+                      <field name="send_mail_client"/>
+                  </field>
+                  <field name="name" position="before">
+                      <field name="identification"/>
+                  </field>
+              </field>
+         </record>
+        <!--Form order-->
+         <record id="view_pos_config_kanban" model="ir.ui.view">
+           <field name="name">pos.config.kanban.view</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+             <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//button[@name='action_pos_order_invoice']" position="replace">
+                   <button type="object" name="posOrderInvoice" string="Factura" attrs="{'invisible':[('state','not in',['paid', 'done'])]}"/>
+                </xpath>
+
+                <xpath expr="//button[@name='refund']" position="after">
+                   <button string="ENVIAR AL SRI"
+                           attrs="{'invisible': ['|', ('sri_response', 'in', ['2','3','4','7']), ('typeDoc', 'in', ['2'])]}" type="object" name="sendInvoiceAuthorization"/>
+                </xpath>
+
+                 <notebook>
+                   <page string="Facturación Electrónica" name="electronic_invoice" >
+                        <article>
+                              <div class="row">
+                                  <div class="col-sm-6">
+                                      <h3>Información General</h3>
+                                      <span><strong>Número de factura SRI: </strong></span>
+                                      <field class="" name="invoice_number" readonly="1" force_save="1"/><br></br>
+
+                                      <span><strong>Clave de acceso: </strong></span>
+                                      <field class="" name="access_key"  force_save="1"/><br></br>
+
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <h3>Información Técnica</h3>
+                                        <group>
+                                            <field name="typeDoc" readonly="1" />
+                                            <field class="" name="sri_response" readonly="1" force_save="1"/>
+                                            <field name="xml_sri_request_id" readonly="1"/>
+                                        </group>
+                                  </div>
+                              </div>
+                        </article>
+                   </page>
+                 </notebook>
+
+            </field>
+        </record>
+    </data>
+</odoo>

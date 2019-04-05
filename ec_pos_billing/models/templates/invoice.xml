@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<factura id="comprobante" version="1.1.0">
+     <infoTributaria>
+         <ambiente>{{ ambiente }}</ambiente>
+         <tipoEmision>1</tipoEmision>
+         <razonSocial>{{ razonSocial }}</razonSocial>
+         <nombreComercial>{{ razonSocial }}</nombreComercial>
+         <ruc>{{ ruc }}</ruc>
+         <claveAcceso>{{ claveAcceso }}</claveAcceso>
+         <codDoc>{{ codDoc }}</codDoc>
+         <estab>{{ estab }}</estab>
+         <ptoEmi>{{ ptoEmi }}</ptoEmi>
+         <secuencial>{{ secuencial }}</secuencial>
+         <dirMatriz>{{ dirMatriz }}</dirMatriz>
+     </infoTributaria>
+    <infoFactura>
+        <fechaEmision>{{ fechaEmision }}</fechaEmision>
+        <dirEstablecimiento>{{dirEstablecimiento}}</dirEstablecimiento>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <tipoIdentificacionComprador>{{tipoIdentificacionComprador}}</tipoIdentificacionComprador>
+        <razonSocialComprador>{{razonSocialComprador}}</razonSocialComprador>
+        <identificacionComprador>{{identificacionComprador}}</identificacionComprador>
+        <direccionComprador>{{direccionComprador}}</direccionComprador>
+        <totalSinImpuestos>{{totalSinImpuestos}}</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            {% for tax in totalConImpuestos %}
+            <totalImpuesto>
+                <codigo>{{tax.codigo}}</codigo>
+                <codigoPorcentaje>{{tax.codigoPorcentaje}}</codigoPorcentaje>
+                <descuentoAdicional>0.00</descuentoAdicional>
+                <baseImponible>{{tax.baseImponible}}</baseImponible>
+                <valor>{{tax.valor}}</valor>
+            </totalImpuesto>
+            {% endfor %}
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>{{importeTotal}}</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            {% for item in formaPago %}
+            <pago>
+                <formaPago>{{item.formaPago}}</formaPago>
+                <total>{{item.total}}</total>
+            </pago>
+            {% endfor %}
+        </pagos>
+    </infoFactura>
+    <detalles>
+        {% for item in detalles %}
+        <detalle>
+            <codigoPrincipal>{{ item['codigoPrincipal'] }}</codigoPrincipal>
+            <codigoAuxiliar>{{ item['codigoPrincipal'] }}</codigoAuxiliar>
+            <descripcion>{{ item['descripcion'] }}</descripcion>
+            <cantidad>{{ item['cantidad'] }}</cantidad>
+            <precioUnitario>{{ item['precioUnitario'] }}</precioUnitario>
+            <descuento>{{ item['descuento']}}</descuento>
+            <precioTotalSinImpuesto>{{ item['precioTotalSinImpuesto'] }}</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="ABCD" valor="EFGH"/>
+            </detallesAdicionales>
+            <impuestos>
+                {% for tax in item['impuestos'] %}
+                    <impuesto>
+                        <codigo>{{ tax['codigo'] }}</codigo>
+                        <codigoPorcentaje>{{ tax['codigoPorcentaje'] }}</codigoPorcentaje>
+                        <tarifa>{{ tax['tarifa'] }}</tarifa>
+                        <baseImponible>{{ tax['baseImponible'] }}</baseImponible>
+                        <valor>{{ tax['valor'] }}</valor>
+                    </impuesto>
+                {% endfor %}
+            </impuestos>
+        </detalle>
+        {% endfor %}
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="Codigo Impuesto ISD">4580</campoAdicional>
+        <campoAdicional nombre="Impuesto ISD">15.42x</campoAdicional>
+    </infoAdicional>
+</factura>
+

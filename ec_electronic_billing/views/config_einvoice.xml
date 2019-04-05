@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+          <!--tree view config-->
+          <!--<record id="invoice_config_tree_view" model="ir.ui.view" >
+            <field name="name">invoice.config.tree.view</field>
+            <field name="model">invoice.config</field>
+            <field name="arch" type="xml">
+               <tree string="Tree Book">
+                   <field name="env_type" />
+                   <field name="name_comercial"/>
+                   <field name="number_resolution"/>
+               </tree>
+            </field>
+          </record>-->
+
+        <!--add action config-->
+
+        <!--<record id="action_config" model="ir.actions.act_window" >
+                <field name="name">Configuración</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">invoice.config</field>
+                <field name="view_mode">tree,form</field>
+         </record>
+
+         <menuitem id="billing" name="Facturación electrónica" />
+         <menuitem id="config" name="Configuración" parent="billing" />
+         <menuitem id="info_general" name="Información general"  parent="config" action="action_config" sequence="1"/>-->
+    </data>
+</odoo>

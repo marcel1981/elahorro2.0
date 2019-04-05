@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+     <!--inherit tree view pos order-->
+        <record id="view_pos_order_tree_inherit_vendedoras" model="ir.ui.view">
+            <field name="name">Vie Pos Order tree Vendedoras Inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="before">
+                    <field name="pos_salesman_id"/>
+                    <field name="pos_location_id"/>
+                </field>
+            </field>
+        </record>
+  </data>
+</odoo>

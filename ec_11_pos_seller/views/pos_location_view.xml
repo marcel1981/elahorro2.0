@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+    <record id="pos_location_form_view" model="ir.ui.view">
+            <field name="name">pos.location.form.view</field>
+            <field name="model">pos.location</field>
+            <field name="arch" type="xml">
+                <form string="Form POS Location">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--tree view POS Location-->
+        <record id="pos_location_tree_view" model="ir.ui.view">
+            <field name="name">pos.location.tree.view</field>
+            <field name="model">pos.location</field>
+            <field name="arch" type="xml">
+                <tree string="Tree POS Location">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--search POS Location-->
+        <record id="pos_location_search_view" model="ir.ui.view">
+            <field name="name">pos.location.search</field>
+            <field name="model">pos.location</field>
+            <field name="arch" type="xml">
+                <search string="POS Location">
+                    <field name="name" string="Nombre"/>
+                </search>
+             </field>
+        </record>
+
+        <!--menus POS Location-->
+        <record id="action_pos_location" model="ir.actions.act_window">
+            <field name="name">POS Location</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.location</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="pos_location_menu_categ_ubicaciones"
+                  name="Ubicaciones"
+                  parent="ec_11_pos_seller.pos_salesman_menu_categ_comisiones"
+                  action="action_pos_location"
+                  sequence="2"/>
+        <menuitem id="pos_location_menu_categ_metas"
+                  name="Presupuesto y metas"
+                  parent="ec_11_pos_seller.pos_salesman_menu_categ_comisiones"
+                  sequence="3"/>
+  </data>
+</odoo>

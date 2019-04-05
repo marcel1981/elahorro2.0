@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="pos_balance_form" model="ir.ui.view">
+        <field name="name">pos.session</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <label for="cash_register_balance_end" position="replace">
+                <label for="cash_register_balance_end" string="."
+                       groups="ec_11_pos_hidden_cash_balance.rigths_pos_balance"/>
+            </label>
+            <label for="cash_register_total_entry_encoding" position="replace">
+                <label for="cash_register_total_entry_encoding" string="."
+                       groups="ec_11_pos_hidden_cash_balance.rigths_pos_balance"/>
+            </label>
+
+
+             <xpath expr="//field[@name='cash_register_total_entry_encoding']" position="replace">
+                  <field name="cash_register_total_entry_encoding" class="oe_bold oe_pos_total"
+                         widget="monetary"
+                         groups="ec_11_pos_hidden_cash_balance.rigths_pos_balance"/>
+             </xpath>
+
+            <xpath expr="//field[@name='cash_register_balance_end']" position="replace">
+                  <field name="cash_register_balance_end" class="oe_bold oe_pos_total"
+                         widget="monetary"
+                         groups="ec_11_pos_hidden_cash_balance.rigths_pos_balance"/>
+             </xpath>
+
+            <xpath expr="//field[@name='cash_register_difference']" position="replace">
+                  <field name="cash_register_difference" class="oe_bold oe_pos_total"
+                         widget="monetary"
+                         groups="ec_11_pos_hidden_cash_balance.rigths_pos_balance"/>
+             </xpath>
+
+
+            <xpath expr="//field[@name='statement_ids']" position="replace">
+                 <field name="statement_ids" attrs="{'invisible' : [('state', '=', 'opening_control')]}"
+                 groups="ec_11_pos_hidden_cash_balance.rigths_pos_balance">
+                        <tree string="Statements">
+                            <field name="name"/>
+                            <field name="journal_id"/>
+                            <field name="balance_start"/>
+                            <field name="total_entry_encoding"/>
+                            <field name="balance_end_real"/>
+                            <field name="difference"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                            <field name="state"/>
+                        </tree>
+                 </field>
+             </xpath>
+        </field>
+    </record>
+
+    <record id="pos_config_kanban" model="ir.ui.view">
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_config_kanban"/>
+        <field name="arch" type="xml">
+            <field name="last_session_closing_cash" position="replace">
+                <field name="last_session_closing_cash" widget="monetary"
+                       groups="ec_11_pos_hidden_cash_balance.rigths_pos_balance"/>
+
+            </field>
+        </field>
+    </record>
+
+    <!--Preload group-->
+    <record id="rigths_pos_balance" model="res.groups">
+        <field name="name">Ver Valores de Caja</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>

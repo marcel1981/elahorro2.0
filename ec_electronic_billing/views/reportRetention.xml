@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_edocs_paperformat" model="report.paperformat">
+            <field name="name">Formato Vertical Edocumento</field>
+            <!--<field name="default" eval="True"/>-->
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">2</field>
+            <field name="margin_right">2</field>
+        </record>
+
+        <report
+          id="account_retention"
+          model="invoice.retention"
+          string="FV#+(object.access_key or '')"
+          report_type="qweb-pdf"
+          name="ec_electronic_billing.report_retention"
+          file="ec_electronic_billing.report_retention"
+          attachment_use="True"
+          print_report_name = "'FV#'+(object.access_key or '')"
+          attachment="('FV#'+(object.access_key or '').replace('/','')+'.pdf')"
+          />
+</data>
+</odoo>
