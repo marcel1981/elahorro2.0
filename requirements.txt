@@ -2,4 +2,5 @@ wheel
 pyOpenSSL
 phonenumbers
 viivakoodi
+xlrd
 xlsxwriter
