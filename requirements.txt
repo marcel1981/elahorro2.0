@@ -1,2 +1,4 @@
-pyBarcode
+wheel
+pyOpenSSL
 phonenumbers
+viivakoodi
