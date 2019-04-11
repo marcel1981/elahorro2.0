@@ -27,6 +27,17 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
     _logger = logging.getLogger("account.invoice")
 
+    @api.multi
+    @api.depends("create_date")
+    def _get_local_datetime(self):
+        tz_format = "%Y-%m-%d %H:%M:%S"
+        from_zone = tz.gettz("UTC")
+        to_zone = tz.gettz("America/Guayaquil")
+        for row in self:
+            utc = datetime.strptime(row.create_date, tz_format)
+            utc = utc.replace(tzinfo=from_zone)
+            row.date_order_local = utc.astimezone(to_zone).strftime(tz_format)
+
     identification = fields.Char(
         string="Identificación", related="partner_id.identification", readonly=True
     )
@@ -37,7 +48,10 @@ class AccountInvoice(models.Model):
         string="Mensaje Authorización", related="xml_sri_request_id.sri_auth"
     )
     date_order_local = fields.Datetime(
-        string=_("Date current action"), required=False, readonly=True
+        compute="_get_local_datetime",
+        string=_("Date current action"),
+        required=False,
+        store=True,
     )
     xml_sri_request_id = fields.Many2one("sri.xml.send", "SRI XML Request")
     dateEmisionSri = fields.Datetime("Date emisión", required=False, readonly=True)
