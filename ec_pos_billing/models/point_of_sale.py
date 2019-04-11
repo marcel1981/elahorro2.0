@@ -8,6 +8,7 @@ import logging
 
 from ..sri.sri import DocumentXML, SriService
 from ..sri.xades import Xades
+
 from dateutil import tz
 
 
@@ -39,10 +40,6 @@ class PosOrder(models.Model):
         from_zone = tz.gettz("UTC")
         to_zone = tz.gettz("America/Guayaquil")
         for row in self:
-            import wdb
-
-            wdb.set_trace()
-
             utc = datetime.strptime(row.date_order, tz_format)
             utc = utc.replace(tzinfo=from_zone)
             row.date_order_local = utc.astimezone(to_zone).strftime(tz_format)
