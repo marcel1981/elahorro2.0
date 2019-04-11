@@ -189,7 +189,6 @@ class PosOrder(models.Model):
             order.invoice_id.code_emission = config_invoice_pos
             order.invoice_id.date_invoice = order.date_order_local
             order.invoice_id.date_due = order.date_order_local
-            order.invoice_id.date_order_local = order.date_order_local
 
             order.invoice_id.pos_location_id = order.pos_location_id
             order.invoice_id.pos_salesman_id = order.pos_salesman_id
