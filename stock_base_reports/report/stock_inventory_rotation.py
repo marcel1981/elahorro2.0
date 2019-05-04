@@ -17,7 +17,8 @@ class StockInventoryRotationReport(models.AbstractModel):
         warehouse_ids = objs.mapped("warehouse_ids") or objs.warehouse_ids.search([])
         category_ids = objs.mapped("category_ids") or objs.category_ids.search([])
         product_ids = (
-            self.env["product.product"]
+            objs.mapped("product_ids").ids
+            or self.env["product.product"]
             .search([("categ_id", "in", category_ids.ids)])
             .ids
         )
@@ -102,7 +103,8 @@ class StockInventoryRotationReport(models.AbstractModel):
                   sb.type = 'purchase'
                   AND sb.location_dest_id IN ({locations})
                   AND sb.product_id = {product}
-                  AND sb.date BETWEEN '{dfrom} 00:00:00' AND '{dto} 23:59:59'
+                  AND sb.date::DATE >= '{dfrom}'
+                  AND sb.date::DATE <= '{dto}'
                 ORDER BY sb.date DESC
                 LIMIT 1
                 """.format(
@@ -121,7 +123,8 @@ class StockInventoryRotationReport(models.AbstractModel):
                   sb.type = 'sale'
                   AND sb.product_id = {product}
                   AND sb.location_org_id IN ({locations})
-                  AND sb.date BETWEEN '{dfrom} 00:00:00' and '{dto} 23:59:59'
+                  AND sb.date::DATE >= '{dfrom}'
+                  AND sb.date::DATE <= '{dto}'
                 ORDER BY sb.date DESC
                 LIMIT 1
                 """.format(
@@ -166,8 +169,8 @@ class StockInventoryRotationReport(models.AbstractModel):
                 FROM
                   stock_base
                 WHERE
-                  date::DATE <= '{dfrom}' AND
-                  date::DATE >= '{dto}' AND
+                  date::DATE >= '{dfrom}' AND
+                  date::DATE <= '{dto}' AND
                   product_id = {product} AND
                   type = 'internal' AND
                   location_dest_id IN ({locations})
@@ -185,8 +188,8 @@ class StockInventoryRotationReport(models.AbstractModel):
                 FROM
                   stock_base
                 WHERE
-                  date::DATE <= '{dfrom}' AND
-                  date::DATE >= '{dto}' AND
+                  date::DATE >= '{dfrom}' AND
+                  date::DATE <= '{dto}' AND
                   product_id = {product} AND
                   type = 'internal' AND
                   location_org_id IN ({locations})
@@ -220,7 +223,6 @@ class StockInventoryRotationReport(models.AbstractModel):
                     "inventory": 0,
                     "internal": 0,
                 }
-            sheet = workbook.add_worksheet(w.name)
             query = """
             SELECT
               product_id,
@@ -229,20 +231,21 @@ class StockInventoryRotationReport(models.AbstractModel):
             FROM
               stock_base
             WHERE
-              location_id = {} AND
-              product_id in ({}) AND
-              date >= '{}' AND
-              date <= '{}'
+              location_id IN ({locations}) AND
+              product_id IN ({products}) AND
+              date >= '{dfrom}' AND
+              date <= '{dto}'
             ORDER BY product_id
             """.format(
-                w.lot_stock_id.id,
-                ",".join(map(str, product_ids)),
-                objs.from_date,
-                objs.to_date,
+                locations=locations,
+                products=",".join(map(str, product_ids)),
+                dfrom=objs.from_date,
+                dto=objs.to_date,
             )
             self._cr.execute(query)
             pdata = self._cr.dictfetchall()
             if pdata:
+                sheet = workbook.add_worksheet(w.name)
                 for pd in pdata:
                     products[pd.get("product_id", False)][pd.get("type", False)] += abs(
                         pd.get("product_qty", False)
@@ -259,6 +262,8 @@ class StockInventoryRotationReport(models.AbstractModel):
                 )
                 sheet.write_row(1, 0, header, header_fromat)
                 sheet.autofilter("A2:Q2")
+                sheet.fit_to_pages(1, 0)
+                sheet.freeze_panes(2, 0)
                 i = 2
                 for p, v in products.items():
                     if not (
@@ -272,6 +277,7 @@ class StockInventoryRotationReport(models.AbstractModel):
                         or v.get("transfer_out_qty")
                     ):
                         pass
+
                     product = self.env["product.product"].browse(p)
                     product = product.with_context(warehouse=w.id, to_date=objs.to_date)
                     partner = self.env["res.partner"].browse(v.get("partner_id"))
@@ -283,8 +289,8 @@ class StockInventoryRotationReport(models.AbstractModel):
                     sheet.write(i, 5, product.standard_price, product_format)
                     sheet.write(i, 6, product.lst_price, product_format)
                     sheet.write(i, 7, v.get("ops_qty") or 0, qty_format)
-                    sheet.write(i, 8, v.get("sale"), qty_format)
-                    sheet.write(i, 9, v.get("purchase"), qty_format)
+                    sheet.write(i, 8, v.get("purchase"), qty_format)
+                    sheet.write(i, 9, v.get("sale"), qty_format)
                     sheet.write(i, 10, v.get("scrap"), qty_format)
                     sheet.write(i, 11, v.get("inventory"), qty_format)
                     sheet.write(i, 12, v.get("cls_qty") or 0, qty_format)
@@ -361,8 +367,8 @@ class StockInventoryRotationReport(models.AbstractModel):
                 sheet.write(i, 5, v.get("cost"), product_format)
                 sheet.write(i, 6, v.get("price"), product_format)
                 sheet.write(i, 7, v.get("ops_qty") or 0, qty_format)
-                sheet.write(i, 8, v.get("sale"), qty_format)
-                sheet.write(i, 9, v.get("purchase"), qty_format)
+                sheet.write(i, 8, v.get("purchase"), qty_format)
+                sheet.write(i, 9, v.get("sale"), qty_format)
                 sheet.write(i, 10, v.get("scrap"), qty_format)
                 sheet.write(i, 11, v.get("inventory"), qty_format)
                 sheet.write(i, 12, v.get("cls_qty") or 0, qty_format)

@@ -9,9 +9,25 @@ class StockRotationReport(models.TransientModel):
 
     warehouse_ids = fields.Many2many("stock.warehouse", string=_("Warehouses"))
     category_ids = fields.Many2many("product.category", string=_("Product Category"))
+    product_ids = fields.Many2many("product.product", string=_("Products"))
     from_date = fields.Date(string=_("From Date"), required=True)
     to_date = fields.Date(string=_("To Date"), required=True)
-    consolidated = fields.Boolean(string=_("Consolidated"), default=False, help=_("Check this box if you wish to obtain additional consolidated information from the report."))
+    consolidated = fields.Boolean(
+        string=_("Consolidated"),
+        default=False,
+        help=_(
+            "Check this box if you wish to obtain additional consolidated information from the report."
+        ),
+    )
+
+    @api.onchange("category_ids")
+    def _onchange_categ_id(self):
+        res = {"values": {}, "domain": {}}
+        categ_ids = []
+        if self.category_ids:
+            categ_ids = self.category_ids.ids
+            res["domain"] = {"product_ids": [("categ_id", "in", categ_ids)]}
+        return res
 
     @api.multi
     def print_report(self):
@@ -36,7 +52,8 @@ class StockRotationReport(models.TransientModel):
             category_ids = row.mapped("category_ids") or row.category_ids.search([])
             location_ids = location_obj.search(domain)
             product_ids = (
-                self.env["product.product"]
+                row.mapped("product_ids")
+                or self.env["product.product"]
                 .search([("categ_id", "in", category_ids.ids)])
                 .ids
             )

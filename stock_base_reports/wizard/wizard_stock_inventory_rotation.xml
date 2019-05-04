@@ -19,6 +19,7 @@
                         <field name="consolidated" />
 			            <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}" />
 			            <field name="category_ids" widget="many2many_tags" options="{'no_create': True}" />
+                        <field name="product_ids" widget="many2many_tags" options="{'no_create': True}" />
 		            </group>
 		            <footer>
 			            <button string="Download Report" type="object" name="print_report"
