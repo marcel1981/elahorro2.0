@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+	    <!-- Wizard View -->
+	    <record id="wizard_stock_rotation_report" model="ir.ui.view">
+	        <field name="name">Stock Rotation Report</field>
+	        <field name="model">wizard.stock.rotation.report</field>
+	        <field name="arch" type="xml">
+		        <form string="Stock Rotation Report">
+		            <group>
+			            <group>
+			                <field name="from_date"/>
+			            </group>
+			            <group>
+			                <field name="to_date"/>
+			            </group>
+		            </group>
+		            <group>
+                        <field name="consolidated" />
+			            <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}" />
+			            <field name="category_ids" widget="many2many_tags" options="{'no_create': True}" />
+		            </group>
+		            <footer>
+			            <button string="Download Report" type="object" name="print_report"
+					            class="oe_highlight" />
+			            <button string="_Cancel" class="btn-default" special="cancel" />
+		            </footer>
+		        </form>
+	        </field>
+	    </record>
+
+
+        <act_window id="action_stock_rotation_report"
+                    name="Stock Rotation"
+                    res_model="wizard.stock.rotation.report"
+                    view_type="form"
+                    view_mode="form"
+                    view_id="wizard_stock_rotation_report"
+                    target="new" />
+
+	    <menuitem id="menu_stock_rotation_report"
+			      parent="stock.menu_warehouse_report"
+                  action="action_stock_rotation_report"
+			      sequence="120"
+                  groups="stock.group_stock_manager"/>
+
+    </data>
+</odoo>
