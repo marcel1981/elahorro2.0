@@ -163,7 +163,7 @@ class StockInventoryRotationReport(models.AbstractModel):
                 )
                 self._cr.execute(cls_query)
                 cls_data = self._cr.dictfetchall()
-                trasnfer_in_query = """
+                transfer_in_query = """
                 SELECT
                   SUM(ABS(product_qty)) AS QTY
                 FROM
@@ -180,9 +180,9 @@ class StockInventoryRotationReport(models.AbstractModel):
                     dfrom=objs.from_date,
                     dto=objs.to_date,
                 )
-                self._cr.execute(trasnfer_in_query)
-                trasnfer_in_data = self._cr.dictfetchall()
-                trasnfer_out_query = """
+                self._cr.execute(transfer_in_query)
+                transfer_in_data = self._cr.dictfetchall()
+                transfer_out_query = """
                 SELECT
                   SUM(ABS(product_qty)) AS QTY
                 FROM
@@ -199,8 +199,8 @@ class StockInventoryRotationReport(models.AbstractModel):
                     dfrom=objs.from_date,
                     dto=objs.to_date,
                 )
-                self._cr.execute(trasnfer_out_query)
-                trasnfer_out_data = self._cr.dictfetchall()
+                self._cr.execute(transfer_out_query)
+                transfer_out_data = self._cr.dictfetchall()
                 products[p] = {
                     "partner_id": sup_data[0].get("partner_id", False)
                     if sup_data
@@ -211,11 +211,11 @@ class StockInventoryRotationReport(models.AbstractModel):
                     "last_sale": cus_data[0].get("date", False) if cus_data else False,
                     "ops_qty": ops_data[0].get("qty", False) if ops_data else 0,
                     "cls_qty": cls_data[0].get("qty", False) if cls_data else 0,
-                    "trasnfer_in_qty": trasnfer_in_data[0].get("qty", False)
-                    if trasnfer_in_data
+                    "transfer_in_qty": transfer_in_data[0].get("qty", False)
+                    if transfer_in_data
                     else 0,
-                    "transfer_out_qty": trasnfer_out_data[0].get("qty", False)
-                    if trasnfer_out_data
+                    "transfer_out_qty": transfer_out_data[0].get("qty", False)
+                    if transfer_out_data
                     else 0,
                     "sale": 0,
                     "purchase": 0,
