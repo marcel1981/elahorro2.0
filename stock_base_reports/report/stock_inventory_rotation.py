@@ -96,7 +96,7 @@ class StockInventoryRotationReport(models.AbstractModel):
                 sup_query = """
                 SELECT
                   sm.partner_id,
-                  sb.date
+                  sb.date::TIMESTAMP AS date
                 FROM stock_base sb
                 JOIN stock_move sm ON sb.id = sm.id
                 WHERE
@@ -117,7 +117,7 @@ class StockInventoryRotationReport(models.AbstractModel):
                 sup_data = self._cr.dictfetchall()
                 cus_query = """
                 SELECT
-                  sb.date
+                  sb.date::TIMESTAMP AS date
                 FROM stock_base sb
                 WHERE
                   sb.type = 'sale'
