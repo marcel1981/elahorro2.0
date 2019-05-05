@@ -173,9 +173,10 @@ class StockInventoryRotationReport(models.AbstractModel):
                   date::DATE <= '{dto}' AND
                   product_id = {product} AND
                   type = 'internal' AND
-                  location_dest_id IN ({locations})
+                  location_id = {location} AND
+                  product_qty > 0
                 """.format(
-                    locations=locations,
+                    location=w.lot_stock_id.id,
                     product=p,
                     dfrom=objs.from_date,
                     dto=objs.to_date,
@@ -192,9 +193,10 @@ class StockInventoryRotationReport(models.AbstractModel):
                   date::DATE <= '{dto}' AND
                   product_id = {product} AND
                   type = 'internal' AND
-                  location_org_id IN ({locations})
+                  location_id = {location} AND
+                  product_qty < 0
                 """.format(
-                    locations=locations,
+                    location=w.lot_stock_id.id,
                     product=p,
                     dfrom=objs.from_date,
                     dto=objs.to_date,
