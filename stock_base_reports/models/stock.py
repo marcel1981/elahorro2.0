@@ -52,7 +52,7 @@ class StockBase(models.Model):
                 END AS product_qty,
                 i.price_unit,
                 i.product_uom AS uom_id,
-                date,
+                date AT TIME ZONE 'UTC-5' AS date,
                 i.location_id AS location_org_id,
                 i.location_dest_id,
                 CASE
@@ -87,7 +87,7 @@ class StockBase(models.Model):
                 END AS product_qty,
                 o.price_unit,
                 o.product_uom AS uom_id,
-                date,
+                date AT TIME ZONE 'UTC-5' AS date,
                 o.location_id AS location_org_id,
                 o.location_dest_id,
                 CASE
