@@ -6,7 +6,7 @@
           string="Stock Inventory Rotation"
           report_type="xlsx"
           name="stock_base_reports.stock_inventory_rotation.xlsx"
-          file="stock_base_reports.stock_inventory_rotation.xlsx"
+          file="Stock Inventory Rotation"
           attachment_use="False" />
 
 </odoo>
