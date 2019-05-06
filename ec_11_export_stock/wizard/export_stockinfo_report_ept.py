@@ -438,7 +438,7 @@ class ExportStockInfoReport(models.TransientModel):
             new_workbook.write(row, col + 6, None, blank_cell_style)
 
             new_workbook.write(row, col + 7, _("Total Sold Qty"), header_bold)
-            new_workbook.write(row, col + 8, _("Total Purchased Qty",) header_bold)
+            new_workbook.write(row, col + 8, _("Total Purchased Qty"), header_bold)
 
             new_workbook.write(row, col + 9, None, blank_cell_style)
 
