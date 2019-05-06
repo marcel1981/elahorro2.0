@@ -1,0 +1,518 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_base_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-05 03:08+0000\n"
+"PO-Revision-Date: 2019-05-04 22:12-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: es_EC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:37
+#, python-format
+msgid "Adjusted in Period(IN)"
+msgstr "Ajustes en el Periodo"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_warehouse_ids
+msgid "Almacenes"
+msgstr "Almacenes"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_product_qty
+msgid "Cantidad"
+msgstr "Cantidad"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:29
+#, python-format
+msgid "Category"
+msgstr "Categoria"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_category_ids
+msgid "Categoría de producto"
+msgstr "Categoría de producto"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:18
+#, python-format
+msgid "Check this box if you wish to obtain additional consolidated information from the report."
+msgstr "Marque esta casilla si desea obtener información adicional consolidada del reporte."
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:38
+#, python-format
+msgid "Closing Stock"
+msgstr "Stock de Cierre"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:35
+#, python-format
+msgid "Company"
+msgstr "Compañía"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_company_id
+msgid "Compañía"
+msgstr "Compañía"
+
+#. module: stock_base_reports
+#: selection:stock.base,type:0
+msgid "Compra"
+msgstr "Compra"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_consolidated
+msgid "Consolidado"
+msgstr "Consolidado"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:16
+#, python-format
+msgid "Consolidated"
+msgstr "Consolidado"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:6
+#, python-format
+msgid "Consumable"
+msgstr "Consumible"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:31
+#, python-format
+msgid "Cost"
+msgstr "Costo"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_create_uid
+msgid "Created by"
+msgstr "Creado por:"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_create_date
+msgid "Created on"
+msgstr "Creado"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:19
+#, python-format
+msgid "Date"
+msgstr "Fecha"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:13
+#, python-format
+msgid "Default Code"
+msgstr "Referencia Interna"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_from_date
+msgid "Desde"
+msgstr "Desde"
+
+#. module: stock_base_reports
+#: selection:stock.base,type:0
+msgid "Desecho"
+msgstr "Desecho"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:22
+#, python-format
+msgid "Destination Location"
+msgstr "Ubicación destino"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:36
+#, python-format
+msgid "Discarded in Period(OUT)"
+msgstr "Desechado en el Periodo (OUT)"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_report_stock_base_reports_stock_inventory_rotation_xlsx_display_name
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_display_name
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: stock_base_reports
+#: model:ir.ui.view,arch_db:stock_base_reports.wizard_stock_rotation_report
+msgid "Download Report"
+msgstr "Descargar Reporte"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_date
+msgid "Fecha"
+msgstr "Fecha"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:13
+#, python-format
+msgid "From Date"
+msgstr "Desde"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_to_date
+msgid "Hasta"
+msgstr "Hasta"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_report_stock_base_reports_stock_inventory_rotation_xlsx_id
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_id
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:30
+#, python-format
+msgid "Internal"
+msgstr "Interno"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:26
+#, python-format
+msgid "Internal Reference"
+msgstr "Referencia Interna"
+
+#. module: stock_base_reports
+#: selection:stock.base,type:0
+msgid "Interno"
+msgstr "Interno"
+
+#. module: stock_base_reports
+#: selection:stock.base,type:0
+msgid "Inventario"
+msgstr "Inventario"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:26
+#, python-format
+msgid "Inventory"
+msgstr "Inventario"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_report_stock_base_reports_stock_inventory_rotation_xlsx___last_update
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base___last_update
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report___last_update
+msgid "Last Modified on"
+msgstr "Fecha de modificación"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_write_uid
+msgid "Last Updated by"
+msgstr "Ultima Actualización por"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_write_date
+msgid "Last Updated on"
+msgstr "Actualizado en"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:41
+#, python-format
+msgid "Last purchase"
+msgstr "Última Compra"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:42
+#, python-format
+msgid "Last sale"
+msgstr "Última Venta"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:12
+#, python-format
+msgid "Location"
+msgstr "Ubucación"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,help:stock_base_reports.field_wizard_stock_rotation_report_consolidated
+msgid "Marque esta casilla si desea obtener información adicional consolidada del reporte."
+msgstr "Marque esta casilla si desea obtener información adicional consolidada del reporte."
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:32
+#, python-format
+msgid "Move Type"
+msgstr "Tipo de Movimiento"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_picking_id
+msgid "Movimientos de Inventario"
+msgstr "Movimientos de Inventario"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:15
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:27
+#, python-format
+msgid "Name"
+msgstr "Nombre"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_name
+msgid "Nombre"
+msgstr "Nombre"
+
+#. module: stock_base_reports
+#: selection:stock.base,type:0
+msgid "Oferta"
+msgstr "Oferta"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:33
+#, python-format
+msgid "Opening Stock"
+msgstr "Stock Inicial"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:20
+#, python-format
+msgid "Origin Location"
+msgstr "Úbicacion Origen"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:34
+#, python-format
+msgid "Picking"
+msgstr "Movimientos de Inventario"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_price_unit
+msgid "Precio Unitario"
+msgstr "Precio Unitario"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:18
+#, python-format
+msgid "Price Unit"
+msgstr "Precio Unitario"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:14
+#, python-format
+msgid "Product"
+msgstr "Producto"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:11
+#, python-format
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:17
+#, python-format
+msgid "Product QTY"
+msgstr "Cantidad"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:30
+#, python-format
+msgid "Product Type"
+msgstr "Tipo de Producto"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_product_id
+msgid "Producto"
+msgstr "Producto"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_wizard_stock_rotation_report_product_ids
+msgid "Productos"
+msgstr "Productos"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:12
+#, python-format
+msgid "Products"
+msgstr "Productos"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:28
+#, python-format
+msgid "Purchase"
+msgstr "Compra"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:34
+#, python-format
+msgid "Purchase in period"
+msgstr "Compras en el Periodo"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_default_code
+msgid "Referencia Interna"
+msgstr "Referencia Interna"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:27
+#, python-format
+msgid "Sale"
+msgstr "Venta"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:32
+#, python-format
+msgid "Sales Price"
+msgstr "Precio de Venta"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:35
+#, python-format
+msgid "Sales in Period"
+msgstr "Ventas en el Periodo"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:29
+#, python-format
+msgid "Scrap"
+msgstr "Desecho"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:7
+#, python-format
+msgid "Service"
+msgstr "Servicio"
+
+#. module: stock_base_reports
+#: model:ir.actions.report,name:stock_base_reports.stock_inventory_rotation
+msgid "Stock Inventory Rotation"
+msgstr "Rotacion de Inventario"
+
+#. module: stock_base_reports
+#: model:ir.actions.act_window,name:stock_base_reports.action_stock_rotation_report
+#: model:ir.ui.menu,name:stock_base_reports.menu_stock_rotation_report
+msgid "Stock Rotation"
+msgstr "Rotacion de Inventario"
+
+#. module: stock_base_reports
+#: model:ir.ui.view,arch_db:stock_base_reports.wizard_stock_rotation_report
+msgid "Stock Rotation Report"
+msgstr "Reporte de Rotacion de Inventario"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:355
+#, python-format
+msgid "Stock Rotation from {} to {}"
+msgstr "Rotación de Inventario desde {} hasta {}"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:257
+#, python-format
+msgid "Stock Rotation {} from {} to {}"
+msgstr "Rotacion de Inventario {} desde {} hasta {}"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:8
+#, python-format
+msgid "Stockable Product"
+msgstr "Producto Almacenable"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:28
+#, python-format
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:65
+#, python-format
+msgid "The Warehouses {} has no {} locations"
+msgstr "Las Bodegas {} no tienen {} ubicaciones"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:75
+#, python-format
+msgid "There are no products with it for the selected categories {}"
+msgstr "No existen productos para las categorias selecionadas: {}"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_type
+msgid "Tipo de Movimiento"
+msgstr "Tipo de Movimiento"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:14
+#, python-format
+msgid "To Date"
+msgstr "Hasta"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_location_id
+msgid "Ubicación"
+msgstr "Ubicación"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_location_dest_id
+msgid "Ubicación destino"
+msgstr "Ubicación destino"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_uom_id
+msgid "UdM"
+msgstr "UdM"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/models/stock.py:16
+#, python-format
+msgid "UoM"
+msgstr "UdM"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:39
+#, python-format
+msgid "Warehouse Transfer(IN)"
+msgstr "Transferencias de Entrada (IN)"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/report/stock_inventory_rotation.py:40
+#, python-format
+msgid "Warehouse Transfer(OUT)"
+msgstr "Transferencias de Salida (OUT)"
+
+#. module: stock_base_reports
+#: code:addons/stock_base_reports/wizard/wizard_stock_inventory_rotation.py:10
+#, python-format
+msgid "Warehouses"
+msgstr "Almacenes"
+
+#. module: stock_base_reports
+#: model:ir.ui.view,arch_db:stock_base_reports.wizard_stock_rotation_report
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#. module: stock_base_reports
+#: model:ir.model,name:stock_base_reports.model_report_stock_base_reports_stock_inventory_rotation
+msgid "report.stock_base_reports.stock_inventory_rotation"
+msgstr "report.stock_base_reports.stock_inventory_rotation"
+
+#. module: stock_base_reports
+#: model:ir.model,name:stock_base_reports.model_report_stock_base_reports_stock_inventory_rotation_xlsx
+msgid "report.stock_base_reports.stock_inventory_rotation.xlsx"
+msgstr "report.stock_base_reports.stock_inventory_rotation.xlsx"
+
+#. module: stock_base_reports
+#: model:ir.model,name:stock_base_reports.model_stock_base
+msgid "stock.base"
+msgstr "stock.base"
+
+#. module: stock_base_reports
+#: model:ir.model,name:stock_base_reports.model_wizard_stock_rotation_report
+msgid "wizard.stock.rotation.report"
+msgstr "wizard.stock.rotation.report"
+
+#. module: stock_base_reports
+#: model:ir.model.fields,field_description:stock_base_reports.field_stock_base_location_org_id
+msgid "Úbicacion Origen"
+msgstr "Úbicacion Origen"
