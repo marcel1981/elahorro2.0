@@ -1,0 +1,384 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ec_11_export_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-06 02:45+0000\n"
+"PO-Revision-Date: 2019-05-05 21:49-0500\n"
+"Last-Translator: <>\n"
+"Language-Team:\n"
+"Language: es_EC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ec_11_export_stock
+#: model:mail.template,body_html:ec_11_export_stock.mail_template_export_stockinfo_report_ept
+msgid "\n"
+"					<p>Hello,</p>\n"
+"                        \n"
+"                    <p>Please find attached report.</p>\n"
+"                    <p>Thank you.</p>\n"
+"					\n"
+"			"
+msgstr "\n"
+"					<p>Hola,</p>\n"
+"                        \n"
+"                    <p>Por favor busque el reporte adjunto.</p>\n"
+"                    <p>Gracias.</p>\n"
+"					\n"
+"			"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_pdf_layout
+msgid "<span style=\"font-family:Montserrat;font-size:16pt;color:black;font-weight:bold;margin-left:250px\">Products Stock Info</span>"
+msgstr "<span style=\"font-family:Montserrat;font-size:16pt;color:black;font-weight:bold;margin-left:250px\">Products Stock Info</span>"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_is_active_product
+msgid "Active Products Only?"
+msgstr "¿Solo Productos Activos?"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:430
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+#, python-format
+msgid "Available Qty"
+msgstr "Cantidad Disponible"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:402
+#, python-format
+msgid "Barcode"
+msgstr "Código de Barras"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,help:ec_11_export_stock.field_res_config_settings_group_visible_export_stock
+msgid "By selecting this option, user can see 'Export Stock' menu in /Reporting/Warehouse."
+msgstr "Para seleccionar esta opción, el usuario puede ver 'Exportar Stock de Inventario' en el Menú /Reportes/Inventario."
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_view_wizard
+msgid "Categoria"
+msgstr "Categoria"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:404
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_category_ids
+#, python-format
+msgid "Category"
+msgstr "Categoría"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:405
+#, python-format
+msgid "Cost"
+msgstr "Costo"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+msgid "Cost Price"
+msgstr "Costo"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_create_uid
+msgid "Created by"
+msgstr "Creado por:"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_create_date
+msgid "Created on"
+msgstr "Creado"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_display_name
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_report_ec_11_export_stock_export_stockinfo_report_pdf_ept_display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_is_display_red
+msgid "Display Red Text for Negative Quantity ?"
+msgstr "¿Mostrar Cantidades Negativas en Color Rojo ?"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_view_wizard
+msgid "Download Report PDF"
+msgstr "Descargar Reporte PDF"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_view_wizard
+msgid "Download Report XLS"
+msgstr "Descargar Reporte XLS"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_view_wizard
+msgid "Export Product Stock Info"
+msgstr "Exportar Información de Stock de Productos"
+
+#. module: ec_11_export_stock
+#: model:ir.actions.server,name:ec_11_export_stock.export_stockinfo_report_cron_ir_actions_server
+#: model:ir.cron,cron_name:ec_11_export_stock.export_stockinfo_report_cron
+#: model:ir.cron,name:ec_11_export_stock.export_stockinfo_report_cron
+msgid "Export Product Stock in Excel"
+msgstr "Exportar Stock de productos en Excel"
+
+#. module: ec_11_export_stock
+#: model:ir.actions.act_window,name:ec_11_export_stock.export_stockinfo_report_action
+msgid "Export Products with StockInfo"
+msgstr "Exportar productos con Información de Stock"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.menu,name:ec_11_export_stock.menu_export_stockinfo_report
+msgid "Export Stock"
+msgstr "Exportar Stock"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.view_stock_config_settings_export_stock
+msgid "Export StockInfo in Excel file ?"
+msgstr "¿Exportar Información de Stock en Excel?"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_res_config_settings_group_visible_export_stock
+msgid "Export Stockinfo In Excel file?"
+msgstr "¿Exportar información de Stock en Excel?"
+
+#. module: ec_11_export_stock
+#: model:mail.template,subject:ec_11_export_stock.mail_template_export_stockinfo_report_ept
+msgid "Export Stockinfo Report For ${(datetime.datetime.now().strftime('%d-%m-%Y'))}"
+msgstr "Exportar información de Stock para ${(datetime.datetime.now().strftime('%d-%m-%Y'))}"
+
+#. module: ec_11_export_stock
+#: model:res.groups,name:ec_11_export_stock.group_export_multi_warehouse_stock
+msgid "Export Stockinfo in Excel"
+msgstr "Exportar Información de Stock en Excel"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_datas
+msgid "File"
+msgstr "Archivo"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:436
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+#, python-format
+msgid "Forecasted Stock"
+msgstr "Stock Pronosticado"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_report_wise
+msgid "Generate Report Based on"
+msgstr "Generar Reporte basado en"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_id
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_report_ec_11_export_stock_export_stockinfo_report_pdf_ept_id
+msgid "ID"
+msgstr "ID"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:433
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+#, python-format
+msgid "Incoming Qty"
+msgstr "Cantidad de Entrada"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept___last_update
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_report_ec_11_export_stock_export_stockinfo_report_pdf_ept___last_update
+msgid "Last Modified on"
+msgstr "Fecha de modificación"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_write_uid
+msgid "Last Updated by"
+msgstr "Ultima Actualización por"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_write_date
+msgid "Last Updated on"
+msgstr "Actualizado en"
+
+#. module: ec_11_export_stock
+#: selection:export.stockinfo.report.ept,report_wise:0
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:322
+#, python-format
+msgid "Location(s)"
+msgstr "Ubicacione(s)"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_location_ids
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:403
+#, python-format
+msgid "Name"
+msgstr "Nombre"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:435
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+#, python-format
+msgid "Net On Hand"
+msgstr "Cantidad a Mano Total"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+msgid "Odoo SKU"
+msgstr "SKU"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:434
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+#, python-format
+msgid "Outgoing Qty"
+msgstr "Cantidad de Salida"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:83
+#, python-format
+msgid "Please select the %s"
+msgstr "Por favor seleccione %s"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:80
+#, python-format
+msgid "Please select the report Genration Based On"
+msgstr "Por favor seleccione la Generación de reporte basado en"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:317
+#, python-format
+msgid "Product Information"
+msgstr "Información de Producto"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+msgid "Product Name"
+msgstr "Nombre producto"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:309
+#, python-format
+msgid "Product Stock"
+msgstr "Stock de Producto"
+
+#. module: ec_11_export_stock
+#: model:ir.actions.report,name:ec_11_export_stock.export_stockinfo_reprot_pdf_action
+msgid "Product Stock Info"
+msgstr "Información de Stock del Producto"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_view_wizard
+msgid "Proveedor"
+msgstr "Proveedor"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_pdf_layout
+msgid "Report Date"
+msgstr "Fecha de Reporte"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:312
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:314
+#, python-format
+msgid "Report Date : "
+msgstr "Fecha Reporte : "
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:401
+#, python-format
+msgid "SKU"
+msgstr "SKU"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:399
+#, python-format
+msgid "State"
+msgstr "Estado"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:400
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_supplier_ids
+#, python-format
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_view_wizard
+msgid "Suppliers"
+msgstr "Proveedores"
+
+#. module: ec_11_export_stock
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_to_date
+msgid "To Date"
+msgstr "Hasta"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:441
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+#, python-format
+msgid "Total Purchased Qty"
+msgstr "Cantidad Total Comprada"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:440
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+#, python-format
+msgid "Total Sold Qty"
+msgstr "Cantidad Total Vendida"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:445
+#: model:ir.ui.view,arch_db:ec_11_export_stock.report_stockinfo_lines_header
+#, python-format
+msgid "Valuation"
+msgstr "Valoración"
+
+#. module: ec_11_export_stock
+#: selection:export.stockinfo.report.ept,report_wise:0
+#: model:ir.model.fields,field_description:ec_11_export_stock.field_export_stockinfo_report_ept_warehouse_ids
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_pdf_layout
+msgid "Warehouse"
+msgstr "Bodega"
+
+#. module: ec_11_export_stock
+#: code:addons/ec_11_export_stock/wizard/export_stockinfo_report_ept.py:320
+#, python-format
+msgid "Warehouse(s)"
+msgstr "Bodega(s)"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_view_wizard
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#. module: ec_11_export_stock
+#: model:ir.model,name:ec_11_export_stock.model_export_stockinfo_report_ept
+msgid "export.stockinfo.report.ept"
+msgstr "export.stockinfo.report.ept"
+
+#. module: ec_11_export_stock
+#: model:ir.ui.view,arch_db:ec_11_export_stock.export_stockinfo_report_view_wizard
+msgid "or"
+msgstr "o"
+
+#. module: ec_11_export_stock
+#: model:ir.model,name:ec_11_export_stock.model_report_ec_11_export_stock_export_stockinfo_report_pdf_ept
+msgid "report.ec_11_export_stock.export_stockinfo_report_pdf_ept"
+msgstr "report.ec_11_export_stock.export_stockinfo_report_pdf_ept"
+
+#. module: ec_11_export_stock
+#: model:ir.model,name:ec_11_export_stock.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"

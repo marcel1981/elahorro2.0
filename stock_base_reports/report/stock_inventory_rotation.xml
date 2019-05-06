@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <report id="stock_inventory_rotation"
+          model="wizard.stock.rotation.report"
+          string="Stock Inventory Rotation"
+          report_type="xlsx"
+          name="stock_base_reports.stock_inventory_rotation.xlsx"
+          file="Stock Inventory Rotation"
+          attachment_use="False" />
+
+</odoo>
