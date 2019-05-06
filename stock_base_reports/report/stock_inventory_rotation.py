@@ -265,7 +265,7 @@ class StockInventoryRotationReport(models.AbstractModel):
                 sheet.write_row(1, 0, header, header_fromat)
                 sheet.autofilter("A2:Q2")
                 sheet.fit_to_pages(1, 0)
-                sheet.freeze_panes(2, 0)
+                sheet.freeze_panes(2, 1)
                 i = 2
                 for p, v in products.items():
                     if not (
