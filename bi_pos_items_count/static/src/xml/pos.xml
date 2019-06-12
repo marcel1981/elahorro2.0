@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <templates id="bi_pos_items_count_template" inherit_id="point_of_sale.template" xml:space="preserve">
+
+
+
+	 <!-- OrderWidget -->
+		<t t-extend="OrderWidget">
+		    
+		    <t t-jquery=".summary" t-operation="after">
+                <div class='items' style="padding-bottom: 10px; padding-left: 15px;padding-right: 15px;"><i><b style="font-weight: bold; color: #0075AC;font-size: 20px;">Total Items: <span class="value">0.00€</span></b></i></div>
+		    </t>
+
+		</t>
+		
+		
+		<!-- Add Total Items in PosTicket -->
+		<t t-extend="PosTicket">
+		    
+		    <t t-jquery="table[class*='receipt-change']" t-operation="after">
+
+				<br />
+				<table class='receipt-change'>
+		            <tr><td>Total Items: </td><td class="pos-right-align">
+		                <t t-esc="order.get_total_items()"/>
+		                </td></tr>
+		        </table>
+
+		    </t>
+	   
+		</t> 
+		
+
+  	</templates>
+
+
