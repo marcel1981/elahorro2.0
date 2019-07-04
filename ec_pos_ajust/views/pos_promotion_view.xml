@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="promotion_view_id " model="ir.ui.view">
+        <field name="name">pos.promotion</field>
+        <field name="inherit_id" ref="aspl_pos_promotion.promotion_view_id"/>
+        <field name="model">pos.promotion</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="before">
+                <field name="pos_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

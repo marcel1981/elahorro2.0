@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="ec_pos_ajust.list">
+      <field name="name">ec_pos_ajust list</field>
+      <field name="model">ec_pos_ajust.ec_pos_ajust</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="ec_pos_ajust.action_window">
+      <field name="name">ec_pos_ajust window</field>
+      <field name="res_model">ec_pos_ajust.ec_pos_ajust</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="ec_pos_ajust.action_server">
+      <field name="name">ec_pos_ajust server</field>
+      <field name="model_id" ref="model_ec_pos_ajust_ec_pos_ajust"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="ec_pos_ajust" id="ec_pos_ajust.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="ec_pos_ajust.menu_1" parent="ec_pos_ajust.menu_root"/>
+    <menuitem name="Menu 2" id="ec_pos_ajust.menu_2" parent="ec_pos_ajust.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="ec_pos_ajust.menu_1_list" parent="ec_pos_ajust.menu_1"
+              action="ec_pos_ajust.action_window"/>
+    <menuitem name="Server to list" id="ec_pos_ajust" parent="ec_pos_ajust.menu_2"
+              action="ec_pos_ajust.action_server"/>
+    -->
+  </data>
+</odoo>

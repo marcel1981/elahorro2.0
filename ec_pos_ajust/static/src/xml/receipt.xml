@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" inherit_id="ec_pos_billing.template">
+    <t t-extend="PosTicket">
+        <t t-jquery=".receipt-change" t-operation="append">
+            <tr>
+                <td>Total items:</td>
+                <td class="pos-right-align">
+                    <t t-esc="order.get_total_items()"/>
+                </td>
+            </tr>
+        </t>
+
+        <t t-jquery="[t-esc='orderline.get_product().display_name']" t-operation="append">
+            <t t-if="orderline.get_promotion() and orderline.get_promotion().rule_name">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_promotion().rule_name"/> Rule Applied...
+                </div>
+            </t>
+            <t t-if="orderline.get_buy_x_get_y_child_item().rule_name">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_buy_x_get_y_child_item().rule_name"/> Rule Applied...
+                </div>
+            </t>
+            <t t-if="orderline.get_quantity_discount().rule_name">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_quantity_discount().rule_name"/> Rule Applied...
+                </div>
+            </t>
+            <t t-if="orderline.get_discount_amt_rule()">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_discount_amt_rule()"/> Rule Applied...
+                </div>
+                <div class="pos-disc-font">
+                    With a <t t-esc="orderline.get_discount_amt()"/>% discount
+                </div>
+            </t>
+            <t t-if="orderline.get_combinational_product_rule()">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_combinational_product_rule()"/> Rule Applied...
+                </div>
+            </t>
+            <t t-if="orderline.get_multi_prod_categ_rule()">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_multi_prod_categ_rule()"/> Rule Applied...
+                </div>
+            </t>
+        </t>
+
+
+        <t t-jquery="[t-esc='widget.format_currency(order.get_total_discount())']" t-operation="replace">
+            <t t-esc="widget.format_currency(order.get_order_total_discount())"/>
+        </t>
+    </t>
+
+</templates>
