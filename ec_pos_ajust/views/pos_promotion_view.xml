@@ -6,7 +6,7 @@
         <field name="model">pos.promotion</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='sequence']" position="before">
-                <field name="pos_id"/>
+                <field name="pos_ids" widget="many2many_tags"/>
             </xpath>
         </field>
     </record>

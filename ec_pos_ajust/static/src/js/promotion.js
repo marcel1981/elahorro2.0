@@ -9,6 +9,6 @@ odoo.define('ec_pos_ajust.promotion', function (require) {
             ['from_date','<=',current_date],
             ['to_date','>=',current_date],
             ['active','=',true],
-            ['pos_id','=', self.pos_session.config_id[0]]
+            ['pos_ids','=', self.pos_session.config_id[0]]
         ];}
 });
