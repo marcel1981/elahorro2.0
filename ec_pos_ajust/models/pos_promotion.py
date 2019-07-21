@@ -1,4 +1,6 @@
 from odoo import api, fields, models
+from odoo.exceptions import UserError
+
 
 class Pos_promotion(models.Model):
     _inherit = 'pos.promotion'
@@ -16,3 +18,17 @@ class Pos_promotion(models.Model):
             ('discount_on_above_price','Discount On Above Price')
         ], default="buy_x_get_y",require=True
     )
+    value_per_coupon = fields.Float('Valor por cupon')
+    name_raffle = fields.Char('Nombre del Sorteo')
+    date_raffle = fields.Date('Fecha del Sorteo')
+    promotion_code = fields.Char('Código de promoción')
+    description = fields.Char('Descripción')
+
+    @api.constrains('promotion_code')
+    def _check_promotion_code(self):
+        if self.search_count([
+                ('promotion_code', '=', self.promotion_code)
+        ]) > 1:
+            raise UserError(
+                "No pueden existir dos promoción con el mismo Código"
+            )

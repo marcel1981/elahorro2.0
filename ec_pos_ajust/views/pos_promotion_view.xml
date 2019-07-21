@@ -8,6 +8,22 @@
             <xpath expr="//field[@name='sequence']" position="before">
                 <field name="pos_ids" widget="many2many_tags"/>
             </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    name="promotion_coupon"
+                    string="Condition"
+                    attrs="{'invisible':[('promotion_type','!=','buy_x_get_coupon')]}"
+                    autofocus="True"
+                >
+                    <group>
+                        <field name="value_per_coupon"/>
+                        <field name="name_raffle"/>
+                        <field name="date_raffle"/>
+                        <field name="promotion_code"/>
+                        <field name="description"/>
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>

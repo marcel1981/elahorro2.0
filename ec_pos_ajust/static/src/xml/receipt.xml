@@ -61,7 +61,35 @@
                 </td>
             </tr>
         </t>
+        <t t-jquery=".pos-sale-ticket" t-operation="after">
+            <t t-foreach="order.num_cupon" t-as="ordercupon">
+                <t t-foreach="Array.from(Array(Math.floor(order.get_total_with_tax()/ordercupon.value_per_coupon) + 1).keys()).slice(1)" t-as="n">
+                    <div class="pos-sale-ticket">
+                        <t t-set="client" t-value="order.get_client()"/>
+                        Felicidades
+                        <span>
+                            Felicidades,
+                            usted está participando por un sorteo
+                             <span t-esc="client.name"/>, fecha del sorteo <span t-esc="ordercupon.date_raffle"/>
+                        </span>
+                        <div class="text-center">Vigencia:</div>
+                        <div class="text-center">
+                            <span t-esc="ordercupon.from_date"/> a <span t-esc="ordercupon.to_date"/>
+                        </div>
+                        <div class="text-left">
+                            Nombre: <span t-esc="client.name"/><br/>
+                            ID: <span t-esc="client.identification"/><br/>
+                            Correo: <span t-esc="client.email"/><br/>
+                            Teléfono: <span t-esc="client.phone"/><br/>
+                        </div>
+                        <div>
+                            <span t-esc="ordercupon.promotion_code"/>
+                            <br/>
+                            <span t-esc="ordercupon.promotion_code"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
     </t>
-
-
 </templates>
