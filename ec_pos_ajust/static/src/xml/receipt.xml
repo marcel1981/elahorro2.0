@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<templates id="template" inherit_id="ec_pos_billing.template">
+<templates id="template" inherit_id="ec_pos_billing.template" xml:space="preserve">
     <t t-extend="PosTicket">
         <t t-jquery=".receipt-change" t-operation="append">
             <tr>
@@ -66,14 +66,13 @@
                 <t t-foreach="Array.from(Array(Math.floor(order.get_total_with_tax()/ordercupon.value_per_coupon) + 1).keys()).slice(1)" t-as="n">
                     <div class="pos-sale-ticket">
                         <t t-set="client" t-value="order.get_client()"/>
-                        Felicidades
-                        <span>
+                        <span align="center">
                             Felicidades,
                             usted está participando por un sorteo
                              <span t-esc="client.name"/>, fecha del sorteo <span t-esc="ordercupon.date_raffle"/>
                         </span>
-                        <div class="text-center">Vigencia:</div>
-                        <div class="text-center">
+                        <div align="center">Vigencia:</div>
+                        <div align="center">
                             <span t-esc="ordercupon.from_date"/> a <span t-esc="ordercupon.to_date"/>
                         </div>
                         <div class="text-left">
@@ -82,9 +81,8 @@
                             Correo: <span t-esc="client.email"/><br/>
                             Teléfono: <span t-esc="client.phone"/><br/>
                         </div>
-                        <div>
-                            <span t-esc="ordercupon.promotion_code"/>
-                            <br/>
+                        <div align="center" style="margin-top: 3px;" >
+                            <img t-att-src="'/report/barcode/?type=Code128&amp;value='+ ordercupon.promotion_code +'&amp;width=300&amp;height=100'"/>
                             <span t-esc="ordercupon.promotion_code"/>
                         </div>
                     </div>

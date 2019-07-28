@@ -2,6 +2,7 @@
 <odoo>
     <template id="index" name="pos_b index" inherit_id="point_of_sale.index">
         <xpath expr="." position="inside">
+            <script type="text/javascript" src="/ec_pos_ajust/static/src/js/jquery-barcode-last.min.js"/>
             <script type="text/javascript" src="/ec_pos_ajust/static/src/js/promotion.js"></script>
         </xpath>
     </template>
