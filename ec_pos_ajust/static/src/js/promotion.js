@@ -27,6 +27,8 @@ odoo.define('ec_pos_ajust.promotion', function (require) {
                 var pos = this.pos;
                 var promotion_list = pos.pos_promotions
                 order.num_cupon = promotion_list.filter(promotion => promotion.promotion_type == 'buy_x_get_coupon');
+            } else {
+                order.num_cupon = false
             }
             this._super();
         }

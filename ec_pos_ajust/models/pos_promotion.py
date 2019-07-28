@@ -21,7 +21,6 @@ class Pos_promotion(models.Model):
     value_per_coupon = fields.Float('Valor por cupon')
     name_raffle = fields.Char('Nombre del Sorteo')
     date_raffle = fields.Date('Fecha del Sorteo')
-    promotion_code = fields.Char('Código de promoción')
     description = fields.Char('Descripción')
 
     @api.constrains('promotion_code')
