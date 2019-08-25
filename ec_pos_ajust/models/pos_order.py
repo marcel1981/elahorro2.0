@@ -25,5 +25,6 @@ class PosOrder(models.Model):
             'partner_id': o['data']['partner_id'],
             'seq': promotion['seq'],
             'date': o['data']['creation_date']
-        }) for o in orders for promotion in o['data']['promotion_list']]
+        }) for o in orders if o['data'].get('promotion_list')
+           for promotion in o['data'].get('promotion_list')]
         return super(PosOrder, self).create_from_ui(orders)
