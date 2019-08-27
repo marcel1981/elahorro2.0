@@ -19,7 +19,7 @@ class PosOrder(models.Model):
 
     @api.model
     def create_from_ui(self, orders):
-        history = self.env['pos.promotion.history']
+        history = self.env['pos.promotion.history'].sudo()
         [history.create({
             'promotion_id': promotion['promotion_id'],
             'partner_id': o['data']['partner_id'],
