@@ -77,7 +77,7 @@ odoo.define('ec_11_pos_seller', function (require) {
     });
 
     //evento click boton pos salesman
-    screens.PaymentScreenWidget = screens.PaymentScreenWidget.include({
+    screens.PaymentScreenWidget.include({
         renderElement: function () {
             var self = this;
             this._super()
