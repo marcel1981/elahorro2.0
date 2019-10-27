@@ -20,6 +20,8 @@
             <field name="arch" type="xml">
                 <form string="Coupon Promotion">
                     <header>
+                        <button name="confirm" string="Confirm"
+                                type="object" class="oe_highlight" states="draft"/>
                         <field name="state" widget="statusbar" />
                     </header>
                     <sheet>
@@ -33,21 +35,23 @@
                         </h2>
                         <group>
                             <group>
-                                <field name="date_from" />
-                                <field name="coupon_number" />
-                                <field name="coupon_partner" />
-                                <field name="coupon_apply" />
+                                <field name="date_from" required="1"/>
+                                <field name="coupon_number" required="1"/>
+                                <field name="coupon_partner" required="1"/>
+                                <field name="coupon_apply" required="1"/>
                             </group>
                             <group>
-                                <field name="date_to" />
+                                <field name="date_to" required="1"/>
                                 <field name="coupon_left" />
-                                <field name="coupon_value" widget="monetary"/>
-                                <field name="currency_id" />
+                                <field name="coupon_value" widget="monetary" required="1"/>
+                                <field name="currency_id" required="1" invisible="1"/>
+                                <field name="team_id" required="1"/>
+                                <field name="min_amount" required="1" />
                             </group>
                         </group>
                         <notebook>
                             <page string="Coupon Promotions">
-                                <field name="coupon_ids" >
+                                <field name="coupon_ids" readonly="1">
                                     <tree string="Coupons" >
                                         <field name="name" />
                                         <field name="partner_id" />
@@ -114,13 +118,22 @@
             <field name="model">coupon.promotion</field>
             <field name="arch" type="xml">
                 <form string="Coupon Promotions" >
-                    <field name="name" />
-                    <field name="coupon_id" />
-                    <field name="partner_id" />
-                    <field name="value" />
-                    <field name="used" />
-                    <field name="used_in" />
-                    <field name="send" />
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="used_in" />
+                                <field name="number" />
+                            </group>
+                            <group>
+                                <field name="used" />
+                            </group>
+                        </group>
+                        <field name="coupon_id" />
+                        <field name="partner_id" />
+                        <field name="value" />
+                        <field name="send" />
+                    </sheet>
                 </form>
             </field>
         </record>

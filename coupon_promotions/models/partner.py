@@ -24,19 +24,31 @@ class ResPartner(models.Model):
             if not partner_id:
                 partner_id = super(ResPartner, self).create(vals)
             coupon_id = coupon_obj.search(
-                [("date_from", "<=", today), ("date_to", ">=", today)]
+                [
+                    ("date_from", "<=", today),
+                    ("date_to", ">=", today),
+                    ("state", "=", "confirm"),
+                ]
             )
             if coupon_id:
                 number = len(coupon_id.mapped("coupon_ids")) + 1
-                promotion_obj.create(
-                    {
-                        "name": "{}-{}-{:0>4}".format(
-                            coupon_id.code, partner_id.identification[:-4], number
-                        ),
-                        "coupon_id": coupon_id.id,
-                        "partner_id": partner_id.id,
-                        "value": coupon_id.coupon_value,
-                    }
+                partner_coupons = promotion_obj.search(
+                    [
+                        ("partner_id", "=", partner_id.id),
+                        ("coupon_id", "=", coupon_id.id),
+                    ]
                 )
+                if len(partner_coupons) < coupon_id.coupon_partner:
+                    promotion_obj.create(
+                        {
+                            "name": "{}-{}-{:0>4}".format(
+                                coupon_id.code, partner_id.identification[-4:], number
+                            ),
+                            "coupon_id": coupon_id.id,
+                            "partner_id": partner_id.id,
+                            "value": coupon_id.coupon_value,
+                        }
+                    )
+                    promotion_obj.coupon_notify()
             return partner_id
         return super(ResPartner, self).create(vals)
