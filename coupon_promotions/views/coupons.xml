@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem id="coupon_promotion_menu_root"
+                  name="Coupon Promotions"
+                  web_icon="coupon_promotions,static/description/icon.png"
+                  active="True"
+                  sequence="8"/>
+
+        <menuitem id="coupon_promotion_menu"
+                  name="Coupons"
+                  parent="coupon_promotion_menu_root"
+                  sequence="2"/>
+
+        <record id="view_coupon_form" model="ir.ui.view">
+            <field name="name">view.coupon.form</field>
+            <field name="model">coupon</field>
+            <field name="arch" type="xml">
+                <form string="Coupon Promotion">
+                    <header>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" required="1" class="oe_inline" placeholder="Coupon Name"/>
+                            </h1>
+                        </div>
+                        <h2>
+                            <field name="code" required="1" class="oe_inline" placeholder="Coupon Code"/>
+                        </h2>
+                        <group>
+                            <group>
+                                <field name="date_from" />
+                                <field name="coupon_number" />
+                                <field name="coupon_partner" />
+                                <field name="coupon_apply" />
+                            </group>
+                            <group>
+                                <field name="date_to" />
+                                <field name="coupon_left" />
+                                <field name="coupon_value" widget="monetary"/>
+                                <field name="currency_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Coupon Promotions">
+                                <field name="coupon_ids" >
+                                    <tree string="Coupons" >
+                                        <field name="name" />
+                                        <field name="partner_id" />
+                                        <field name="send" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Mail Body">
+                                <field name="body_html" class="o_mail_body" widget="html" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_coupon_tree" model="ir.ui.view">
+            <field name="name">view.coupon.form</field>
+            <field name="model">coupon</field>
+            <field name="arch" type="xml">
+                <tree string="Coupon Promotion">
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="date_from" />
+                    <field name="date_to" />
+                    <field name="coupon_apply" />
+                    <field name="coupon_number" />
+                    <field name="coupon_left" />
+                </tree>
+            </field>
+        </record>
+
+        <act_window id="action_coupon"
+                    name="Coupon Promotions"
+                    res_model="coupon"
+                    view_type="form"
+                    view_mode="tree,form"
+                    view_id="view_coupon_tree"
+                    target="current" />
+
+        <menuitem id="menu_coupon"
+                  parent="coupon_promotion_menu"
+                  action="action_coupon"
+                  sequence="30" />
+
+        <record id="view_coupon_promotion_tree" model="ir.ui.view">
+            <field name="name">view.coupon.promotion.tree</field>
+            <field name="model">coupon.promotion</field>
+            <field name="arch" type="xml">
+                <tree string="Coupon Promotions" >
+                    <field name="name" />
+                    <field name="coupon_id" />
+                    <field name="partner_id" />
+                    <field name="value" />
+                    <field name="used" />
+                    <field name="used_in" />
+                    <field name="send" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_coupon_promotion_form" model="ir.ui.view">
+            <field name="name">view.coupon.promotion.form</field>
+            <field name="model">coupon.promotion</field>
+            <field name="arch" type="xml">
+                <form string="Coupon Promotions" >
+                    <field name="name" />
+                    <field name="coupon_id" />
+                    <field name="partner_id" />
+                    <field name="value" />
+                    <field name="used" />
+                    <field name="used_in" />
+                    <field name="send" />
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_coupon_promotion"
+                    name="Coupon Details"
+                    res_model="coupon.promotion"
+                    view_type="form"
+                    view_mode="tree,form"
+                    view_id="view_coupon_promotion_tree"
+                    target="current" />
+
+        <menuitem id="menu_coupon_promotion"
+                  parent="coupon_promotion_menu"
+                  action="action_coupon_promotion"
+                  sequence="60" />
+
+
+    </data>
+</odoo>

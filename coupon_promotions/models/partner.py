@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from odoo import _, api, fields, models
+
+
+class ResPartner(models.Model):
+    _inherit = "res.partner"
+
+    def _get_terms(self):
+        return "Test"
+
+    terms = fields.Boolean(_("Accept Terms and Conditions"))
+    conditions = fields.Text("Term And Conditions", deafult="_get_terms")
+
+    @api.model
+    def create(self, vals):
+        today = fields.Date.today()
+        coupon_obj = self.env["coupon"]
+        promotion_obj = self.env["coupon.promotion"]
+        if self.env.context.get("website_id"):
+            partner_id = self.search(
+                [("identification", "=", vals.get("identification"))]
+            )
+            if not partner_id:
+                partner_id = super(ResPartner, self).create(vals)
+            coupon_id = coupon_obj.search(
+                [("date_from", "<=", today), ("date_to", ">=", today)]
+            )
+            if coupon_id:
+                number = len(coupon_id.mapped("coupon_ids")) + 1
+                promotion_obj.create(
+                    {
+                        "name": "{}-{}-{:0>4}".format(
+                            coupon_id.code, partner_id.identification[:-4], number
+                        ),
+                        "coupon_id": coupon_id.id,
+                        "partner_id": partner_id.id,
+                        "value": coupon_id.coupon_value,
+                    }
+                )
+            return partner_id
+        return super(ResPartner, self).create(vals)
