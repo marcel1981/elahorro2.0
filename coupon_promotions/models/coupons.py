@@ -14,39 +14,74 @@ from odoo.exceptions import ValidationError
 class Coupon(models.Model):
     _name = "coupon"
 
-    name = fields.Char(_("Name"))
-    code = fields.Char(_("Code"), size=4)
-    team_id = fields.Many2one("crm.team", _("Sales Team"))
-    date_from = fields.Date(_("From"))
-    date_to = fields.Date(_("To"))
-    coupon_number = fields.Integer(_("Coupons Available"))
+    name = fields.Char(
+        _("Name"), readonly=True, states={"draft": [("readonly", False)]}
+    )
+    code = fields.Char(
+        _("Code"), size=4, readonly=True, states={"draft": [("readonly", False)]}
+    )
+    date_from = fields.Date(
+        _("From"), readonly=True, states={"draft": [("readonly", False)]}
+    )
+    date_to = fields.Date(
+        _("To"), readonly=True, states={"draft": [("readonly", False)]}
+    )
+    coupon_number = fields.Integer(
+        _("Coupons Available"), readonly=True, states={"draft": [("readonly", False)]}
+    )
     coupon_left = fields.Integer(
         _("Coupons Left"), compute="_get_delivered_coupons", store=True
     )
-    coupon_partner = fields.Integer(_("Number of Coupons per Customer"))
-    coupon_value = fields.Monetary(_("Coupon Amount"))
+    coupon_partner = fields.Integer(
+        _("Number of Coupons per Customer"),
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
+    coupon_value = fields.Monetary(
+        _("Coupon Amount"), readonly=True, states={"draft": [("readonly", False)]}
+    )
     coupon_apply = fields.Selection(
         [("both", _("Both")), ("sale", _("Sale Orders")), ("pos", _("Point of Sale"))],
         _("Coupon Apply"),
         default="both",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     coupon_ids = fields.One2many("coupon.promotion", "coupon_id", "Coupons")
     currency_id = fields.Many2one(
-        "res.currency", default=lambda x: x.env.user.company_id.currency_id.id
+        "res.currency",
+        default=lambda x: x.env.user.company_id.currency_id.id,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
-    body_html = fields.Text("Mail Template")
+    body_html = fields.Text(
+        "Mail Template", readonly=True, states={"draft": [("readonly", False)]}
+    )
+    team_id = fields.Many2one(
+        "crm.team",
+        _("Sale Chanel"),
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
+    min_amount = fields.Monetary(
+        _("Minimum Purchase"), readonly=True, states={"draft": [("readonly", False)]}
+    )
     state = fields.Selection(
         [("draft", _("Draft")), ("confirm", _("Confirm")), ("cancel", _("Cancel"))],
         string=_("State"),
         default="draft",
     )
-    team_id = fields.Many2one("crm.team", _("Sale Chanel"))
-    min_amount = fields.Monetary(_("Minimum Purchase"))
 
     @api.multi
     def confirm(self):
         for row in self:
             row.state = "confirm"
+        return True
+
+    @api.multi
+    def cancel(self):
+        for row in self:
+            row.state = "cancel"
         return True
 
     @api.multi
@@ -81,14 +116,30 @@ class CouponPromotion(models.Model):
     name = fields.Char(_("Code"))
     number = fields.Char(_("Number"), compute="_get_number", store=True)
     partner_id = fields.Many2one("res.partner", _("Customer"))
+    identification = fields.Char(
+        "Identification", related="partner_id.identification", store=True
+    )
     coupon_id = fields.Many2one("coupon", _("Coupon"))
     send = fields.Boolean("Email Send", default=False)
     currency_id = fields.Many2one(
         "res.currency", related="coupon_id.currency_id", store=True
     )
+    date_from = fields.Date(_("From"), related="coupon_id.date_from", store=True)
+    date_to = fields.Date(_("To"), related="coupon_id.date_to", store=True)
+    date_used = fields.Date(_("Date Used"))
+    team_id = fields.Many2one(
+        "crm.team", _("Sale Chanel"), related="coupon_id.team_id", store=True
+    )
     value = fields.Monetary(_("Amount"))
     used = fields.Boolean(_("Used"))
     used_in = fields.Char(_("Used in"))
+    state = fields.Selection(
+        [("draft", _("Draft")), ("confirm", _("Confirm")), ("cancel", _("Cancel"))],
+        string=_("State"),
+        default="draft",
+        related="coupon_id.state",
+        store=True,
+    )
 
     @api.model
     def fields_view_get(
@@ -146,6 +197,7 @@ class CouponPromotion(models.Model):
                 "body_html": template.render(**variables),
                 "email_to": row.partner_id.email,
                 "email_from": row.env.user.company_id.email,
+                "author_id": row.env.user.company_id.partner_id.id,
             }
             mail_obj.create(vals)
             row.send = True

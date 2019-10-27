@@ -22,6 +22,8 @@
                     <header>
                         <button name="confirm" string="Confirm"
                                 type="object" class="oe_highlight" states="draft"/>
+                        <button name="cancel" string="Cancel"
+                                type="object" class="oe_highlight" states="confirm"/>
                         <field name="state" widget="statusbar" />
                     </header>
                     <sheet>
@@ -77,9 +79,12 @@
                     <field name="name" />
                     <field name="date_from" />
                     <field name="date_to" />
+                    <field name="team_id" />
                     <field name="coupon_apply" />
                     <field name="coupon_number" />
                     <field name="coupon_left" />
+                    <field name="coupon_value" />
+                    <field name="state" />
                 </tree>
             </field>
         </record>
@@ -109,6 +114,7 @@
                     <field name="used" />
                     <field name="used_in" />
                     <field name="send" />
+                    <field name="state" />
                 </tree>
             </field>
         </record>
@@ -127,12 +133,26 @@
                             </group>
                             <group>
                                 <field name="used" />
+                                <field name="date_from" />
+                                <field name="date_to" />
+                                <field name="date_used" />
+                                <field name="team_id" />
                             </group>
                         </group>
-                        <field name="coupon_id" />
-                        <field name="partner_id" />
-                        <field name="value" />
-                        <field name="send" />
+                        <notebook>
+                            <page string="General Info">
+                                <group>
+                                    <group>
+                                        <field name="partner_id" />
+                                        <field name="identification" />
+                                        <field name="value" />
+                                    </group>
+                                    <group>
+                                        <field name="coupon_id" />
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
