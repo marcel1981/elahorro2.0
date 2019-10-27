@@ -57,9 +57,12 @@ class Coupon(models.Model):
     body_html = fields.Text(
         "Mail Template", readonly=True, states={"draft": [("readonly", False)]}
     )
-    team_id = fields.Many2one(
+    team_ids = fields.Many2many(
         "crm.team",
-        _("Sale Chanel"),
+        "coupon_crm_team_rel",
+        "coupon_id",
+        "team_id",
+        _("Sale Chanels"),
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
@@ -127,8 +130,14 @@ class CouponPromotion(models.Model):
     date_from = fields.Date(_("From"), related="coupon_id.date_from", store=True)
     date_to = fields.Date(_("To"), related="coupon_id.date_to", store=True)
     date_used = fields.Date(_("Date Used"))
-    team_id = fields.Many2one(
-        "crm.team", _("Sale Chanel"), related="coupon_id.team_id", store=True
+    team_ids = fields.Many2many(
+        "crm.team",
+        "coupon_promotion_crm_team_rel",
+        "coupon_id",
+        "team_id",
+        _("Sale Chanels"),
+        related="coupon_id.team_ids",
+        store=True,
     )
     value = fields.Monetary(_("Amount"))
     used = fields.Boolean(_("Used"))
