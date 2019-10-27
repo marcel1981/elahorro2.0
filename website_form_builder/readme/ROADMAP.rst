@@ -31,5 +31,3 @@
 * If you add a custom file upload field to a form that creates records in
   models that have no ``mail.thread`` inheritance, your users will be unable
   to send the form.
-
-* This module it's incompatible with 'website_form_recaptcha' module.
