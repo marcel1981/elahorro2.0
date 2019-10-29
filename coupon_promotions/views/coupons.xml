@@ -58,6 +58,9 @@
                                         <field name="name" />
                                         <field name="partner_id" />
                                         <field name="send" />
+                                        <field name="used" />
+                                        <field name="used_in" />
+                                        <field name="state" />
                                     </tree>
                                 </field>
                             </page>

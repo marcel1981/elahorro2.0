@@ -8,11 +8,17 @@ from barcode.writer import ImageWriter
 from jinja2 import Template
 from lxml import etree
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 class Coupon(models.Model):
+    """
+    Coupon Management
+    """
+
     _name = "coupon"
+    _description = __doc__
+    _order = "date_to"
 
     name = fields.Char(
         _("Name"), readonly=True, states={"draft": [("readonly", False)]}
@@ -76,6 +82,15 @@ class Coupon(models.Model):
     )
 
     @api.multi
+    def unlink(self):
+        for row in self:
+            if row.state != "draft":
+                raise UserError(
+                    _("You cannot delete an Coupon which is not draft or cancelled")
+                )
+        return super(Coupon, self).unlink()
+
+    @api.multi
     def confirm(self):
         for row in self:
             row.state = "confirm"
@@ -104,7 +119,12 @@ class Coupon(models.Model):
 
 
 class CouponPromotion(models.Model):
+    """
+    Promotions with coupons
+    """
+
     _name = "coupon.promotion"
+    _description = __doc__
 
     @api.multi
     @api.depends("name")
@@ -119,9 +139,21 @@ class CouponPromotion(models.Model):
     name = fields.Char(_("Code"))
     number = fields.Char(_("Number"), compute="_get_number", store=True)
     partner_id = fields.Many2one("res.partner", _("Customer"))
-    identification = fields.Char(
-        "Identification", related="partner_id.identification", store=True
+    partner_name = fields.Char(_("Customer Name"), required=True)
+    type_identifier = fields.Selection(
+        [
+            ("04", "RUC"),
+            ("05", "CEDULA"),
+            ("06", "PASAPORTE"),
+            ("07", "CONSUMIDOR FINAL"),
+        ],
+        string="Tipo ID",
+        default="06",
+        required=True,
     )
+    identification = fields.Char(_("Identification"), required=True)
+    email = fields.Char(_("Email"), required=True)
+    terms = fields.Boolean(_("Accept Terms and Conditions"), required=True)
     coupon_id = fields.Many2one("coupon", _("Coupon"))
     send = fields.Boolean("Email Send", default=False)
     currency_id = fields.Many2one(
@@ -145,10 +177,18 @@ class CouponPromotion(models.Model):
     state = fields.Selection(
         [("draft", _("Draft")), ("confirm", _("Confirm")), ("cancel", _("Cancel"))],
         string=_("State"),
-        default="draft",
         related="coupon_id.state",
         store=True,
     )
+
+    @api.multi
+    def unlink(self):
+        for row in self:
+            if row.state != "draft":
+                raise UserError(
+                    _("You cannot delete an Coupon which is not draft or cancelled")
+                )
+        return super(Coupon, self).unlink()
 
     @api.model
     def fields_view_get(
@@ -167,8 +207,61 @@ class CouponPromotion(models.Model):
         return res
 
     @api.model
+    def create(self, vals):
+        today = fields.Date.today()
+        partner_obj = self.env["res.partner"]
+        coupon_obj = self.env["coupon"]
+        promotion_obj = self.env["coupon.promotion"]
+        if self.env.context.get("website_id"):
+            partner_id = partner_obj.search(
+                [("identification", "=", vals.get("identification"))]
+            )
+            if not partner_id:
+                partner_id = partner_obj.create(
+                    {
+                        "name": vals.get("partner_name"),
+                        "type_identifier": vals.get("type_identifier"),
+                        "identification": vals.get("identification"),
+                        "email": vals.get("email"),
+                        "customer": True,
+                    }
+                )
+            coupon_id = coupon_obj.search(
+                [
+                    ("date_from", "<=", today),
+                    ("date_to", ">=", today),
+                    ("coupon_left", ">", 0),
+                    ("state", "=", "confirm"),
+                ]
+            )
+            last_coupon = partner_coupons = promotion_obj.search(
+                [("partner_id", "=", partner_id.id)], limit=1
+            )
+            if not coupon_id:
+                return last_coupon
+            number = len(coupon_id.mapped("coupon_ids")) + 1
+            partner_coupons = promotion_obj.search(
+                [("partner_id", "=", partner_id.id), ("coupon_id", "=", coupon_id.id)]
+            )
+            if len(partner_coupons) < coupon_id.coupon_partner:
+                vals.update(
+                    {
+                        "name": "{}-{}-{:0>4}".format(
+                            coupon_id.code, partner_id.identification[-4:], number
+                        ),
+                        "coupon_id": coupon_id.id,
+                        "partner_id": partner_id.id,
+                        "value": coupon_id.coupon_value,
+                    }
+                )
+                res = super(CouponPromotion, self).create(vals)
+                self.coupon_notify()
+            else:
+                res = last_coupon
+        return res
+
+    @api.model
     def coupon_notify(self):
-        data = {}
         coupon_ids = self.search([("send", "=", False)])
         for row in coupon_ids:
             mail_obj = self.env["mail.mail"]

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_invoice_coupon_form" model="ir.ui.view">
+            <field name="name">account.payment.invoice.coupon.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_invoice_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount']" position='before'>
+                    <field name="coupon" invisible="1"/>
+                    <field name="coupon_code" placeholder="Coupon Code" attrs="{'required': [('coupon', '=', True)], 'invisible': [('coupon', '=', False)]}"/>
+                    <field name="coupon_id" invisible="1" />
+                </xpath>
+                <xpath expr="//field[@name='amount']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('coupon', '=', True)]}</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
