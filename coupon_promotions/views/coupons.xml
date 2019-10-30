@@ -4,7 +4,7 @@
 
         <!-- Top menu item -->
         <menuitem id="coupon_promotion_menu_root"
-                  name="Coupon Promotions"
+                  name="Coupon Management"
                   web_icon="coupon_promotions,static/description/icon.png"
                   active="True"
                   sequence="8"/>
@@ -60,6 +60,7 @@
                                         <field name="send" />
                                         <field name="used" />
                                         <field name="used_in" />
+                                        <field name="date_used" />
                                         <field name="state" />
                                     </tree>
                                 </field>

@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='amount']" position='before'>
                     <field name="coupon" invisible="1"/>
+                    <field name="coupon_valid" invisible="1"/>
                     <field name="coupon_code" placeholder="Coupon Code" attrs="{'required': [('coupon', '=', True)], 'invisible': [('coupon', '=', False)]}"/>
                     <field name="coupon_id" invisible="1" />
                 </xpath>

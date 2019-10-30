@@ -68,7 +68,7 @@ class Coupon(models.Model):
         "coupon_crm_team_rel",
         "coupon_id",
         "team_id",
-        _("Sale Chanels"),
+        _("Sale Channels"),
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
@@ -167,7 +167,7 @@ class CouponPromotion(models.Model):
         "coupon_promotion_crm_team_rel",
         "coupon_id",
         "team_id",
-        _("Sale Chanels"),
+        _("Sale Channels"),
         related="coupon_id.team_ids",
         store=True,
     )

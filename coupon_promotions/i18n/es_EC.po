@@ -1,0 +1,473 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* coupon_promotions
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-30 03:15+0000\n"
+"PO-Revision-Date: 2019-10-29 22:27-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_EC\n"
+"X-Generator: Poedit 2.2.4\n"
+
+#. module: coupon_promotions
+#: model:ir.model,name:coupon_promotions.model_coupon
+msgid ""
+"\n"
+"    Coupon Management\n"
+"    "
+msgstr ""
+"\n"
+"    Gestión de Cupones\n"
+"    "
+
+#. module: coupon_promotions
+#: model:ir.model,name:coupon_promotions.model_coupon_promotion
+msgid ""
+"\n"
+"    Promotions with coupons\n"
+"    "
+msgstr ""
+"\n"
+"    Promociones con Cupones\n"
+"    "
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:156
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_terms
+#, python-format
+msgid "Accept Terms and Conditions"
+msgstr "Aceptar Términos y Condiciones"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:11
+#: model:ir.model.fields,field_description:coupon_promotions.field_account_journal_coupons
+#, python-format
+msgid "Allow Coupons"
+msgstr "Permitir Cupones"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:11
+#: model:ir.model.fields,help:coupon_promotions.field_account_journal_coupons
+#: model:ir.model.fields,help:coupon_promotions.field_account_payment_coupon
+#, python-format
+msgid "Allow payment with coupons!"
+msgstr "Permitir pagar con Cupones!"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:174
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_value
+#, python-format
+msgid "Amount"
+msgstr "Monto"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:50
+#: selection:coupon,coupon_apply:0
+#, python-format
+msgid "Both"
+msgstr "Ambos"
+
+#. module: coupon_promotions
+#: selection:coupon.promotion,type_identifier:0
+msgid "CEDULA"
+msgstr "CEDULA"
+
+#. module: coupon_promotions
+#: selection:coupon.promotion,type_identifier:0
+msgid "CONSUMIDOR FINAL"
+msgstr "CONSUMIDOR FINAL"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:79
+#: code:addons/coupon_promotions/models/coupons.py:178 selection:coupon,state:0
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_form
+#, python-format
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:27
+#: code:addons/coupon_promotions/models/coupons.py:139
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_code
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_name
+#, python-format
+msgid "Code"
+msgstr "Código"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:79
+#: code:addons/coupon_promotions/models/coupons.py:178 selection:coupon,state:0
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_form
+#, python-format
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: coupon_promotions
+#: model:ir.model,name:coupon_promotions.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:18
+#: code:addons/coupon_promotions/models/account.py:21
+#: code:addons/coupon_promotions/models/coupons.py:157
+#: model:ir.model.fields,field_description:coupon_promotions.field_account_payment_coupon
+#: model:ir.model.fields,field_description:coupon_promotions.field_account_payment_coupon_id
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_coupon_id
+#, python-format
+msgid "Coupon"
+msgstr "Cupon"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:47
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_coupon_value
+#, python-format
+msgid "Coupon Amount"
+msgstr "Monto del Cupón"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:51
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_coupon_apply
+#, python-format
+msgid "Coupon Apply"
+msgstr "Aplicar Cupones en"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:20
+#: model:ir.model.fields,field_description:coupon_promotions.field_account_payment_coupon_code
+#: model:ir.ui.view,arch_db:coupon_promotions.view_account_payment_invoice_coupon_form
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_form
+#, python-format
+msgid "Coupon Code"
+msgstr "Código del Cupón"
+
+#. module: coupon_promotions
+#: model:ir.actions.act_window,name:coupon_promotions.action_coupon_promotion
+#: model:ir.ui.menu,name:coupon_promotions.menu_coupon_promotion
+msgid "Coupon Details"
+msgstr "Detalle de Cupones"
+
+#. module: coupon_promotions
+#: model:ir.ui.menu,name:coupon_promotions.coupon_promotion_menu_root
+msgid "Coupon Management"
+msgstr "Gestión de Cupones"
+
+#. module: coupon_promotions
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_form
+msgid "Coupon Name"
+msgstr "Nombre del Cupón"
+
+#. module: coupon_promotions
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_form
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_tree
+msgid "Coupon Promotion"
+msgstr "Promoción con Cupon"
+
+#. module: coupon_promotions
+#: model:ir.actions.act_window,name:coupon_promotions.action_coupon
+#: model:ir.ui.menu,name:coupon_promotions.menu_coupon
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_form
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_promotion_form
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_promotion_tree
+msgid "Coupon Promotions"
+msgstr "Promocion con Cupones"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:19
+#: model:ir.model.fields,field_description:coupon_promotions.field_account_payment_coupon_valid
+#, python-format
+msgid "Coupon Valid"
+msgstr "Cupón Valido"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:61
+#, python-format
+msgid "Coupon code does not apply to the sales channel: {}!"
+msgstr "El código de cupón no se aplica a los canales de venta: {}!"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_coupon_ids
+#: model:ir.ui.menu,name:coupon_promotions.coupon_promotion_menu
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_form
+msgid "Coupons"
+msgstr "Cupones"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:36
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_coupon_number
+#, python-format
+msgid "Coupons Available"
+msgstr "Cupones Disponibles"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:39
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_coupon_left
+#, python-format
+msgid "Coupons Left"
+msgstr "Cupones Restantes"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_create_uid
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_create_uid
+msgid "Created by"
+msgstr "Creado por:"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_create_date
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_create_date
+msgid "Created on"
+msgstr "Creado"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_currency_id
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:141
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_partner_id
+#, python-format
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:142
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_partner_name
+#, python-format
+msgid "Customer Name"
+msgstr "Nombre"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:164
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_date_used
+#, python-format
+msgid "Date Used"
+msgstr "Fecha de Uso"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_display_name
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:79
+#: code:addons/coupon_promotions/models/coupons.py:178 selection:coupon,state:0
+#, python-format
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:155
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_email
+#, python-format
+msgid "Email"
+msgstr "Email"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_send
+msgid "Email Send"
+msgstr "Email Enviado"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:30
+#: code:addons/coupon_promotions/models/coupons.py:162
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_date_from
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_date_from
+#, python-format
+msgid "From"
+msgstr "Desde"
+
+#. module: coupon_promotions
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_promotion_form
+msgid "General Info"
+msgstr "Información General"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_id
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_id
+msgid "ID"
+msgstr "ID"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:154
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_identification
+#, python-format
+msgid "Identification"
+msgstr "Identificación"
+
+#. module: coupon_promotions
+#: model:ir.model,name:coupon_promotions.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon___last_update
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion___last_update
+msgid "Last Modified on"
+msgstr "Fecha de modificación"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_write_uid
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_write_uid
+msgid "Last Updated by"
+msgstr "Ultima Actualización por"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_write_date
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_write_date
+msgid "Last Updated on"
+msgstr "Actualizado en"
+
+#. module: coupon_promotions
+#: model:ir.ui.view,arch_db:coupon_promotions.view_coupon_form
+msgid "Mail Body"
+msgstr "Cuerpo de Correo"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_body_html
+msgid "Mail Template"
+msgstr "Plantilla de Correo"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:76
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_min_amount
+#, python-format
+msgid "Minimum Purchase"
+msgstr "Compra Minima"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:24
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_name
+#, python-format
+msgid "Name"
+msgstr "Nombre"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:140
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_number
+#, python-format
+msgid "Number"
+msgstr "Número"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:42
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_coupon_partner
+#, python-format
+msgid "Number of Coupons per Customer"
+msgstr "Cupones por Cliente"
+
+#. module: coupon_promotions
+#: selection:coupon.promotion,type_identifier:0
+msgid "PASAPORTE"
+msgstr "PASAPORTE"
+
+#. module: coupon_promotions
+#: model:ir.model,name:coupon_promotions.model_account_payment
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:50
+#: selection:coupon,coupon_apply:0
+#, python-format
+msgid "Point of Sale"
+msgstr "Punto de Venta"
+
+#. module: coupon_promotions
+#: selection:coupon.promotion,type_identifier:0
+msgid "RUC"
+msgstr "RUC"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:71
+#: code:addons/coupon_promotions/models/coupons.py:170
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_team_ids
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_team_ids
+#, python-format
+msgid "Sale Channels"
+msgstr "Canales de Venta"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:50
+#: selection:coupon,coupon_apply:0
+#, python-format
+msgid "Sale Orders"
+msgstr "Ordenes de Venta"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:80
+#: code:addons/coupon_promotions/models/coupons.py:179
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_state
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_state
+#, python-format
+msgid "State"
+msgstr "Estado"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:47
+#, python-format
+msgid "The coupon code entered has already been used!"
+msgstr "¡El código de cupón ingresado ya ha sido utilizado!"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:44
+#, python-format
+msgid "The coupon code entered is incorrect!"
+msgstr "¡El código de cupón ingresado es incorrecto!"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:117
+#, python-format
+msgid "The length of the promotion code must be 4 characters!"
+msgstr "¡La longitud del código de promoción debe ser de 4 caracteres!"
+
+#. module: coupon_promotions
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_type_identifier
+msgid "Tipo ID"
+msgstr "Tipo de Identificación"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:33
+#: code:addons/coupon_promotions/models/coupons.py:163
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_date_to
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_date_to
+#, python-format
+msgid "To"
+msgstr "Hasta"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:175
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_used
+#, python-format
+msgid "Used"
+msgstr "Usado"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:176
+#: model:ir.model.fields,field_description:coupon_promotions.field_coupon_promotion_used_in
+#, python-format
+msgid "Used in"
+msgstr "Usado en"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/coupons.py:89
+#: code:addons/coupon_promotions/models/coupons.py:189
+#, python-format
+msgid "You cannot delete an Coupon which is not draft or cancelled"
+msgstr "No puede eliminar un cupón que no esté en borrador o cancelado"
+
+#. module: coupon_promotions
+#: code:addons/coupon_promotions/models/account.py:74
+#, python-format
+msgid "You must enter a valid coupon to continue!"
+msgstr "¡Debe ingresar un cupón válido para continuar!"

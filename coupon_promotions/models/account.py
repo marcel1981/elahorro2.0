@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from odoo import _, models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 class AccountJournal(models.Model):
@@ -16,6 +16,7 @@ class AccountPayment(models.Model):
     _inherit = "account.payment"
 
     coupon = fields.Boolean(_("Coupon"), related="journal_id.coupons")
+    coupon_valid = fields.Boolean(_("Coupon Valid"), default=False)
     coupon_code = fields.Char(_("Coupon Code"))
     coupon_id = fields.Many2one("coupon.promotion", _("Coupon"))
 
@@ -25,6 +26,7 @@ class AccountPayment(models.Model):
         today = fields.Date.today()
         amount = 0
         coupon = False
+        valid = False
         for row in self:
             amount = row.amount
             if row.coupon_code:
@@ -64,12 +66,19 @@ class AccountPayment(models.Model):
                     )
                 amount = promo_id.value
                 coupon = promo_id.id
-        return {"value": {"coupon_id": coupon, "amount": amount}}
+                valid = True
+        return {"value": {"coupon_id": coupon, "coupon_valid": valid, "amount": amount}}
 
     def action_validate_invoice_payment(self):
+        if self.coupon and not self.coupon_valid:
+            raise UserError(_("You must enter a valid coupon to continue!"))
         res = super(AccountPayment, self).action_validate_invoice_payment()
         if self.coupon and self.coupon_id:
             self.coupon_id.update(
-                {"used": True, "used_in": self.env.context.get("active_model")}
+                {
+                    "used": True,
+                    "used_in": self.env.context.get("active_model"),
+                    "date_used": fields.Date.today(),
+                }
             )
         return res
