@@ -1,3 +1,1 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from . import account, coupons
+from . import account, coupons, account_journal, pos_order
