@@ -310,17 +310,21 @@ class CouponPromotion(models.Model):
     def validate_coupon(self, coupon, partner_id, crm_team_id):
         def _validate(coupon):
             return {
-                not coupon.date_from <= fields.Date.today() \
-                or not coupon.date_to >= fields.Date.today(): 'Cupón expirado',
-                coupon.used: 'Cupón ya usado',
+                not coupon.date_from <= fields.Date.today()
+                or not coupon.date_to >= fields.Date.today(): "Cupón expirado",
+                coupon.used: "Cupón ya usado",
             }.get(True) or False
-        coupon = self.search([
-            ('name', '=', coupon),
-            ('partner_id', '=', partner_id),
-            ('used', '=', False),
-            ('coupon_id.coupon_apply', 'in', ("both", "pos")),
-            ("team_ids.id", "=", crm_team_id)
-        ], limit=1)
+
+        coupon = self.search(
+            [
+                ("name", "=", coupon),
+                ("partner_id", "=", partner_id),
+                ("used", "=", False),
+                ("coupon_id.coupon_apply", "in", ("both", "pos")),
+                ("team_ids.id", "=", crm_team_id),
+            ],
+            limit=1,
+        )
         if not coupon.id:
             return "Cupón no valido", False
         return _validate(coupon), coupon.value

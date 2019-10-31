@@ -1,1 +1,1 @@
-from . import account, coupons, account_journal, pos_order
+from . import account, coupons, pos_order

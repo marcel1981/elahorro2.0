@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
+    <data>
 
-    <record id="coupons_journal" model="account.journal">
-      <field name="name">Coupons</field>
-      <field name="code">PROMO</field>
-      <field name="type">cash</field>
-      <field name="journal_user" eval="True" />
-      <field name="coupons" eval="True" />
-      <field name="sequence">20</field>
-    </record>
+        <record id="coupons_journal" model="account.journal">
+            <field name="name">Coupons</field>
+            <field name="code">PROMO</field>
+            <field name="type">cash</field>
+            <field name="journal_user" eval="True" />
+            <field name="coupons" eval="True" />
+            <field name="sequence">20</field>
+        </record>
 
-  </data>
+    </data>
 </odoo>

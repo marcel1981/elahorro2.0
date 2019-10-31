@@ -15,7 +15,6 @@
         "views/account.xml",
         "views/coupons.xml",
         "views/template_view.xml",
-        "views/account_journal_view.xml",
     ],
     "qweb": [],
     "images": [],

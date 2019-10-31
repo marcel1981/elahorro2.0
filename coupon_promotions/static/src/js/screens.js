@@ -50,7 +50,7 @@ odoo.define('coupon_promotion.screens', function (require) {
         },
         click_paymentmethods: function (id) {
             var cashregister = this.pos.cashregisters.filter(x => x.journal.id===id)[0]
-            if (!cashregister.journal.iscoupon) {
+            if (!cashregister.journal.coupons) {
                 return this._super(id)
             }
             var self = this;

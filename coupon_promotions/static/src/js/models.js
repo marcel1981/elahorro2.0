@@ -8,7 +8,7 @@ odoo.define('coupon_promotions.models', function (require) {
     for(var i=0; i<modules.length; i++){
         var model=modules[i];
         if(model.model === 'account.journal'){
-            model.fields.push('iscoupon');
+            model.fields.push('coupons');
         }
     }
     var _paylineproto = models.Paymentline.prototype;
