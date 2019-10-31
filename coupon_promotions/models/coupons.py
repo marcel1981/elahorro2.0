@@ -212,6 +212,7 @@ class CouponPromotion(models.Model):
         partner_obj = self.env["res.partner"]
         coupon_obj = self.env["coupon"]
         promotion_obj = self.env["coupon.promotion"]
+        res = self
         if self.env.context.get("website_id"):
             partner_id = partner_obj.search(
                 [("identification", "=", vals.get("identification"))]
