@@ -216,7 +216,7 @@ class CouponPromotion(models.Model):
 
     @api.model
     def create(self, vals):
-        today = today = dt.now(tz=pytz.timezone(self.env.user.tz)).strftime("%Y-%m-%d")
+        today = dt.now(tz=pytz.timezone(self.env.user.tz)).strftime("%Y-%m-%d")
         partner_obj = self.env["res.partner"]
         coupon_obj = self.env["coupon"]
         promotion_obj = self.env["coupon.promotion"]
@@ -317,9 +317,10 @@ class CouponPromotion(models.Model):
     @api.model
     def validate_coupon(self, coupon, partner_id, crm_team_id):
         def _validate(coupon):
+            today = dt.now(tz=pytz.timezone(self.env.user.tz)).strftime("%Y-%m-%d")
             return {
-                not coupon.date_from <= fields.Date.today()
-                or not coupon.date_to >= fields.Date.today(): "Cupón expirado",
+                not coupon.date_from <= today
+                or not coupon.date_to >= today: "Cupón expirado",
                 coupon.used: "Cupón ya usado",
             }.get(True) or False
 
