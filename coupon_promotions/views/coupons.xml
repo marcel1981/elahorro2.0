@@ -20,6 +20,8 @@
             <field name="arch" type="xml">
                 <form string="Coupon Promotion">
                     <header>
+                        <button name="draft" string="Draft"
+                                type="object" class="oe_highlight" states="confirm,cancel" />
                         <button name="confirm" string="Confirm"
                                 type="object" class="oe_highlight" states="draft"/>
                         <button name="cancel" string="Cancel"
@@ -66,7 +68,18 @@
                                 </field>
                             </page>
                             <page string="Mail Body">
-                                <field name="body_html" class="o_mail_body" widget="html" />
+                                <label string="To edit the email template, the following tags must be used" />
+                                <ul>
+                                    <li> <label string="{{ name }}: Name of the promotion that will deliver the coupon." /> </li>
+                                    <li> <label string="{{ partner }}: Name of the customer to whom the coupon will be delivered." /> </li>
+                                    <li> <label string="{{ date_to }}: date until the promotion applies." /> </li>
+                                    <li> <label string="{{ amount }}: Amount of Coupon." /> </li>
+                                    <li> <label string="{{ min_amount }}: Minimum purchase amount in which the coupon applies." /> </li>
+                                    <li> <label string="{{ barcode|safe }}: Coupon Barcode." /> </li>
+                                    <li> <label string="{{ code }}: Coupon Code." /> </li>
+                                </ul>
+                                <separator string="Email Body"/>
+                                <field name="body_html" class="o_mail_body" widget="html" required="1" />
                             </page>
                         </notebook>
                     </sheet>

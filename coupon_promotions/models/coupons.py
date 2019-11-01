@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import base64
+from datetime import datetime as dt
 from io import BytesIO
 
+import pytz
 from barcode import generate
 from barcode.writer import ImageWriter
 from jinja2 import Template
 from lxml import etree
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class Coupon(models.Model):
@@ -89,6 +91,12 @@ class Coupon(models.Model):
                     _("You cannot delete an Coupon which is not draft or cancelled")
                 )
         return super(Coupon, self).unlink()
+
+    @api.multi
+    def draft(self):
+        for row in self:
+            row.state = "draft"
+        return True
 
     @api.multi
     def confirm(self):
@@ -208,7 +216,7 @@ class CouponPromotion(models.Model):
 
     @api.model
     def create(self, vals):
-        today = fields.Date.today()
+        today = today = dt.now(tz=pytz.timezone(self.env.user.tz)).strftime("%Y-%m-%d")
         partner_obj = self.env["res.partner"]
         coupon_obj = self.env["coupon"]
         promotion_obj = self.env["coupon.promotion"]

@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from odoo import _, models, fields, api
-from odoo.exceptions import ValidationError, UserError
+from datetime import datetime as dt
+
+import pytz
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class AccountJournal(models.Model):
@@ -23,13 +26,17 @@ class AccountPayment(models.Model):
     @api.onchange("coupon_code")
     def _onchange_coupon_code(self):
         promo_obj = self.env["coupon.promotion"]
-        today = fields.Date.today()
+        today = dt.now(tz=pytz.timezone(self.env.user.tz)).strftime("%Y-%m-%d")
         amount = 0
         coupon = False
         valid = False
         for row in self:
             amount = row.amount
             if row.coupon_code:
+                if len(row.mapped("invoice_ids").ids) > 1:
+                    raise ValidationError(
+                        _("You cannot apply the coupon to multiple invoices!")
+                    )
                 promo_id = promo_obj.search(
                     [
                         ("name", "=", row.coupon_code),
@@ -42,6 +49,17 @@ class AccountPayment(models.Model):
                 )
                 if not promo_id:
                     raise ValidationError(_("The coupon code entered is incorrect!"))
+                if (promo_id.coupon_id.min_amount > 0) and (
+                    sum(row.mapped("invoice_ids").mapped("amount_total"))
+                    < promo_id.coupon_id.min_amount
+                ):
+                    raise ValidationError(
+                        _(
+                            "The coupon only applies to purchases greater than or equal to {}!".format(
+                                promo_id.coupon_id.min_amount
+                            )
+                        )
+                    )
                 if promo_id.used:
                     raise ValidationError(
                         _("The coupon code entered has already been used!")
