@@ -6,4 +6,9 @@
             <script type="text/javascript" src="/coupon_promotions/static/src/js/models.js"/>
         </xpath>
     </template>
+    <template id="assets" name="point_of_sale assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/coupon_promotions/static/src/css/pos.css"/>
+        </xpath>
+    </template>
 </odoo>

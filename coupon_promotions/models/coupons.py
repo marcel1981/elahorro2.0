@@ -319,16 +319,13 @@ class CouponPromotion(models.Model):
         def _validate(coupon):
             today = dt.now(tz=pytz.timezone(self.env.user.tz)).strftime("%Y-%m-%d")
             return {
-                not coupon.date_from <= today
-                or not coupon.date_to >= today: "Cupón expirado",
-                coupon.used: "Cupón ya usado",
+                not coupon.date_from <= today <= coupon.date_to: "Cupón expirado",
+                coupon.used: "Cupon aplicado",
+                coupon.partner_id != partner_id: "El cupón a aplicar no corresponde al cliente a facturar",
             }.get(True) or False
-
         coupon = self.search(
             [
                 ("name", "=", coupon),
-                ("partner_id", "=", partner_id),
-                ("used", "=", False),
                 ("coupon_id.coupon_apply", "in", ("both", "pos")),
                 ("team_ids.id", "=", crm_team_id),
             ],
