@@ -55,7 +55,7 @@
                         </group>
                         <notebook>
                             <page string="Coupon Promotions">
-                                <field name="coupon_ids" readonly="1">
+                                <field name="coupon_ids">
                                     <tree string="Coupons" >
                                         <field name="name" />
                                         <field name="partner_id" />
