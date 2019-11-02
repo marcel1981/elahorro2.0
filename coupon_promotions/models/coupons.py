@@ -306,7 +306,7 @@ class CouponPromotion(models.Model):
                     )
                 ),
                 "body_html": template.render(**variables),
-                "email_to": row.partner_id.email,
+                "email_to": row.email,
                 "email_from": row.env.user.company_id.email,
                 "author_id": row.env.user.company_id.partner_id.id,
             }
