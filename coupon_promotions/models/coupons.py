@@ -315,10 +315,11 @@ class CouponPromotion(models.Model):
         return True
 
     @api.model
-    def validate_coupon(self, coupon, partner_id, crm_team_id):
+    def validate_coupon(self, coupon, partner_id, crm_team_id, due):
         def _validate(coupon):
             today = dt.now(tz=pytz.timezone(self.env.user.tz)).strftime("%Y-%m-%d")
             return {
+                coupon.coupon_id.min_amount < due: "Valor minimo para aplicar el cupón es de {}".format(due),
                 not coupon.date_from <= today <= coupon.date_to: "Cupón expirado",
                 coupon.used: "Cupon aplicado",
                 coupon.partner_id.id != partner_id: "El cupón a aplicar no corresponde al cliente a facturar",

@@ -33,13 +33,15 @@ odoo.define('coupon_promotions.models', function (require) {
     })
     models.Order = models.Order.extend({
         validate_coupon: function(coupon) {
+            debugger;
             return rpc.query({
                 model: 'coupon.promotion',
                 method: 'validate_coupon',
                 args: [
                     coupon,
                     this.pos.get_client().id,
-                    this.pos.config.crm_team_id[0]
+                    this.pos.config.crm_team_id[0],
+                    this.get_due()
 
                 ]
             })
