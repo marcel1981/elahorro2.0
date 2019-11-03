@@ -337,14 +337,17 @@ class CouponPromotion(models.Model):
         return True
 
     @api.model
-    def validate_coupon(self, coupon, partner_id, crm_team_id):
+    def validate_coupon(self, coupon, partner_id, crm_team_id, due):
         def _validate(coupon):
             today = fields.Date.context_today(self)
             return {
+                coupon.coupon_id.min_amount > due: "Valor minimo para aplicar el cupón es de {}".format(
+                    coupon.coupon_id.min_amount
+                ),
                 not coupon.date_from <= today <= coupon.date_to: "Cupón expirado",
                 coupon.used: "Cupon aplicado",
-                coupon.partner_id
-                != partner_id: "El cupón a aplicar no corresponde al cliente a facturar",
+                coupon.partner_id.id != partner_id:
+                    "El cupón a aplicar no corresponde al cliente a facturar",
             }.get(True) or False
 
         coupon = self.search(
