@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem id="coupon_promotion_menu_root"
+                  name="Coupon Management"
+                  web_icon="coupon_promotions,static/description/icon.png"
+                  active="True"
+                  sequence="8"/>
+
+        <menuitem id="coupon_promotion_menu"
+                  name="Coupons"
+                  parent="coupon_promotion_menu_root"
+                  sequence="2"/>
+
+        <record id="view_coupon_form" model="ir.ui.view">
+            <field name="name">view.coupon.form</field>
+            <field name="model">coupon</field>
+            <field name="arch" type="xml">
+                <form string="Coupon Promotion">
+                    <header>
+                        <button name="draft" string="Draft"
+                                type="object" class="oe_highlight" states="confirm,cancel" />
+                        <button name="confirm" string="Confirm"
+                                type="object" class="oe_highlight" states="draft"/>
+                        <button name="cancel" string="Cancel"
+                                type="object" class="oe_highlight" states="confirm"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" required="1" class="oe_inline" placeholder="Coupon Name"/>
+                            </h1>
+                        </div>
+                        <h2>
+                            <field name="code" required="1" class="oe_inline" placeholder="Coupon Code"/>
+                        </h2>
+                        <group>
+                            <group>
+                                <field name="date_from" required="1"/>
+                                <field name="coupon_number" required="1"/>
+                                <field name="coupon_partner" required="1"/>
+                                <field name="coupon_apply" required="1"/>
+                            </group>
+                            <group>
+                                <field name="date_to" required="1"/>
+                                <field name="coupon_left" />
+                                <field name="coupon_value" widget="monetary" required="1"/>
+                                <field name="currency_id" required="1" invisible="1"/>
+                                <field name="team_ids" required="1" widget="many2many_tags"/>
+                                <field name="min_amount" required="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Coupon Promotions">
+                                <field name="coupon_ids">
+                                    <tree string="Coupons" >
+                                        <field name="name" />
+                                        <field name="partner_id" />
+                                        <field name="email" />
+                                        <field name="send" />
+                                        <field name="used" />
+                                        <field name="used_in" />
+                                        <field name="date_used" />
+                                        <field name="reference" />
+                                        <field name="state" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Mail Body">
+                                <label string="To edit the email template, the following tags must be used" />
+                                <ul>
+                                    <li> <label string="{{ name }}: Name of the promotion that will deliver the coupon." /> </li>
+                                    <li> <label string="{{ partner }}: Name of the customer to whom the coupon will be delivered." /> </li>
+                                    <li> <label string="{{ date_to }}: date until the promotion applies." /> </li>
+                                    <li> <label string="{{ amount }}: Amount of Coupon." /> </li>
+                                    <li> <label string="{{ min_amount }}: Minimum purchase amount in which the coupon applies." /> </li>
+                                    <li> <label string="{{ barcode|safe }}: Coupon Barcode." /> </li>
+                                    <li> <label string="{{ code }}: Coupon Code." /> </li>
+                                    <li> <label string="{{ cupon_limit }}: Coupon Limit per Customer." /> </li>
+                                </ul>
+                                <separator string="Email Body"/>
+                                <field name="body_html" class="o_mail_body" widget="html" />
+                            </page>
+                            <page string="Mail Body Limit">
+                                <label string="To edit the email template, the following tags must be used" />
+                                <ul>
+                                    <li> <label string="{{ name }}: Name of the promotion that will deliver the coupon." /> </li>
+                                    <li> <label string="{{ partner }}: Name of the customer to whom the coupon will be delivered." /> </li>
+                                    <li> <label string="{{ date_to }}: date until the promotion applies." /> </li>
+                                    <li> <label string="{{ amount }}: Amount of Coupon." /> </li>
+                                    <li> <label string="{{ min_amount }}: Minimum purchase amount in which the coupon applies." /> </li>
+                                    <li> <label string="{{ barcode|safe }}: Coupon Barcode." /> </li>
+                                    <li> <label string="{{ code }}: Coupon Code." /> </li>
+                                    <li> <label string="{{ cupon_limit }}: Coupon Limit per Customer." /> </li>
+                                </ul>
+                                <separator string="Email Body"/>
+                                <field name="body_html_limit" class="o_mail_body" widget="html" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_coupon_tree" model="ir.ui.view">
+            <field name="name">view.coupon.form</field>
+            <field name="model">coupon</field>
+            <field name="arch" type="xml">
+                <tree string="Coupon Promotion">
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="date_from" />
+                    <field name="date_to" />
+                    <field name="team_ids" widget="many2many_tags"/>
+                    <field name="coupon_apply" />
+                    <field name="coupon_number" />
+                    <field name="coupon_left" />
+                    <field name="coupon_value" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <act_window id="action_coupon"
+                    name="Coupon Promotions"
+                    res_model="coupon"
+                    view_type="form"
+                    view_mode="tree,form"
+                    view_id="view_coupon_tree"
+                    target="current" />
+
+        <menuitem id="menu_coupon"
+                  parent="coupon_promotion_menu"
+                  action="action_coupon"
+                  sequence="30" />
+
+        <record id="view_coupon_promotion_tree" model="ir.ui.view">
+            <field name="name">view.coupon.promotion.tree</field>
+            <field name="model">coupon.promotion</field>
+            <field name="arch" type="xml">
+                <tree string="Coupon Promotions" >
+                    <field name="name" />
+                    <field name="coupon_id" />
+                    <field name="partner_id" />
+                    <field name="date_from" />
+                    <field name="date_to" />
+                    <field name="team_ids" widget="many2many_tags"/>
+                    <field name="value" />
+                    <field name="used" />
+                    <field name="used_in" />
+                    <field name="date_used" />
+                    <field name="reference" />
+                    <field name="send" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_coupon_promotion_form" model="ir.ui.view">
+            <field name="name">view.coupon.promotion.form</field>
+            <field name="model">coupon.promotion</field>
+            <field name="arch" type="xml">
+                <form string="Coupon Promotions" >
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="used" />
+                                <field name="used_in" />
+                                <field name="date_used" />
+                                <field name="reference" />
+                                <field name="number" />
+                            </group>
+                            <group>
+                                <field name="date_from" />
+                                <field name="date_to" />
+                                <field name="team_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="General Info">
+                                <group>
+                                    <group>
+                                        <field name="partner_id" />
+                                        <field name="email" />
+                                        <field name="identification" />
+                                        <field name="value" />
+                                    </group>
+                                    <group>
+                                        <field name="partner_street" />
+                                        <field name="partner_phone" />
+                                        <field name="coupon_id" />
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_coupon_promotion"
+                    name="Coupon Details"
+                    res_model="coupon.promotion"
+                    view_type="form"
+                    view_mode="tree,form"
+                    view_id="view_coupon_promotion_tree"
+                    target="current" />
+
+        <menuitem id="menu_coupon_promotion"
+                  parent="coupon_promotion_menu"
+                  action="action_coupon_promotion"
+                  sequence="60" />
+
+
+    </data>
+</odoo>

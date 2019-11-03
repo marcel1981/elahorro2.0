@@ -22,7 +22,7 @@
         <identificacionComprador>{{identificacionComprador}}</identificacionComprador>
         <direccionComprador>{{direccionComprador}}</direccionComprador>
         <totalSinImpuestos>{{totalSinImpuestos}}</totalSinImpuestos>
-        <totalDescuento>0.00</totalDescuento>
+        <totalDescuento>{{Descuento}}</totalDescuento>
         <totalConImpuestos>
             {% for tax in totalConImpuestos %}
             <totalImpuesto>

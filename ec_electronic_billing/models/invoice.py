@@ -7,7 +7,6 @@ from datetime import datetime
 import pytz
 from dateutil import tz
 from jinja2 import Environment, FileSystemLoader
-
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.http import request
@@ -162,7 +161,9 @@ class AccountInvoice(models.Model):
         return pay_method
 
     def render_document(self, type_doc):
-        """Fill xml with the order"""
+        """
+        Fill xml with the order
+        """
         # load xlm dir templates
         tmpl_path = os.path.join(os.path.dirname(__file__), "templates")
         env = Environment(loader=FileSystemLoader(tmpl_path))
@@ -386,7 +387,9 @@ class AccountInvoice(models.Model):
                 )
             )
             values = {
-                "email_from": invoice.company_id.email,
+                "email_from": "{} <{}>".format(
+                    invoice.company_id.name, invoice.company_id.email
+                ),
                 "email_to": invoice.partner_id.email,
                 "auto_delete": False,
                 "model": "account.invoice",

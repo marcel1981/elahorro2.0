@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" inherit_id="ec_pos_billing.template" xml:space="preserve">
+    <t t-extend="PosTicket">
+        <t t-jquery=".receipt-change" t-operation="append">
+            <tr>
+                <td>Total items:</td>
+                <td class="pos-right-align">
+                    <t t-esc="order.get_total_items()"/>
+                </td>
+            </tr>
+        </t>
+        <t t-jquery="[t-esc='orderline.get_product().display_name']" t-operation="after">
+            <t t-if="orderline.get_promotion() and orderline.get_promotion().rule_name">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_promotion().rule_name"/> Rule Applied...
+                </div>
+            </t>
+            <t t-if="orderline.get_buy_x_get_y_child_item().rule_name">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_buy_x_get_y_child_item().rule_name"/> Rule Applied...
+                </div>
+            </t>
+            <t t-if="orderline.get_quantity_discount().rule_name">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_quantity_discount().rule_name"/> Rule Applied...
+                </div>
+            </t>
+            <t t-if="orderline.get_discount_amt_rule()">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_discount_amt_rule()"/> Rule Applied...
+                </div>
+                <div class="pos-disc-font">
+                    With a <t t-esc="orderline.get_discount_amt()"/>% discount
+                </div>
+            </t>
+            <t t-if="orderline.get_combinational_product_rule()">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_combinational_product_rule()"/> Rule Applied...
+                </div>
+            </t>
+            <t t-if="orderline.get_multi_prod_categ_rule()">
+                <div class="pos-disc-font">
+                    <t t-esc="orderline.get_multi_prod_categ_rule()"/> Rule Applied...
+                </div>
+            </t>
+        </t>
+        <t t-jquery="table.receipt-change" t-operation="after">
+            <t t-if="order.get_discount_price() and order.get_discount_price() > 0">
+                <br />
+                <div style='text-align:left'>
+                    <span>Total Discount:<t t-esc="widget.format_currency(order.get_discount_price())"/></span>
+                </div>
+            </t>
+        </t>
+        <t t-jquery="table.receipt-total > tr:nth-child(3)" t-operation="replace"/>
+        <t t-jquery="table.receipt-total > tr:last-child" t-operation="append">
+            <tr>
+                <td>Descuento:</td>
+                <td class="pos-right-align">
+                  <t t-esc="widget.format_currency(order.get_total_discount())"/>
+                </td>
+            </tr>
+        </t>
+        <t t-jquery=".pos-sale-ticket" t-operation="after">
+            <t t-if="order.num_cupon">
+                <t t-foreach="order.num_cupon" t-as="ordercupon">
+                    <div style="page-break-before: always;">
+                        <div class="pos-sale-ticket" >
+                            <t t-set="client" t-value="order.get_client()"/>
+                            <span align="center">
+                                Felicidades,
+                                usted está participando por un sorteo de
+                                 <span t-esc="ordercupon.name_raffle"/>, fecha del sorteo <span t-esc="ordercupon.date_raffle"/>
+                            </span>
+                            <div align="center">Vigencia:</div>
+                            <div align="center">
+                                <span t-esc="ordercupon.from_date"/> a <span t-esc="ordercupon.to_date"/>
+                            </div>
+                            <div class="text-left">
+                                Nombre: <span t-esc="client.name"/><br/>
+                                ID: <span t-esc="client.identification"/><br/>
+                                Correo: <span t-esc="client.email"/><br/>
+                                Teléfono: <span t-esc="client.phone"/><br/>
+                            </div>
+                            <div align="center" style="margin-top: 3px;" >
+                                <img t-att-src="'/report/barcode/?type=Code128&amp;value='+ ordercupon.promotion_code +'&amp;width=300&amp;height=100'"/>
+                                <span t-esc="ordercupon.promotion_code"/>
+                                <br/>
+                                <span t-esc="ordercupon.seq"/>
+
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </t>
+</templates>
