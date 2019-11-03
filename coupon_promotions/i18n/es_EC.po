@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-03 01:26+0000\n"
-"PO-Revision-Date: 2019-11-02 20:31-0500\n"
+"PO-Revision-Date: 2019-11-02 20:34-0500\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -515,7 +515,7 @@ msgstr "Usado en"
 #: code:addons/coupon_promotions/models/account.py:47
 #, python-format
 msgid "You can only register one coupon per invoice!"
-msgstr "You can only register one coupon per invoice!"
+msgstr "¡Solo puede registrar un cupón por factura!"
 
 #. module: coupon_promotions
 #: code:addons/coupon_promotions/models/account.py:38
