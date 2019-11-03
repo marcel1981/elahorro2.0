@@ -1,14 +1,16 @@
-import time
-from odoo import models, fields, api
-from . import utils
+import base64
 import logging
+import pdb
+import time
+
+from . import utils
+
+sfrom odoo import models, fields, api
 
 try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
-import base64
-import pdb
 
 
 class ElectronicDocument(models.AbstractModel):
@@ -207,7 +209,7 @@ class ElectronicDocument(models.AbstractModel):
             discount = (line.price_unit - priced) * line.qty
             if not codigoPrincipal:
                 codigoPrincipal = 'Cod. no generado'
-            else: 
+            else:
                 codigoPrincipal = codigoPrincipal[:25]
             detalle = {
                 'codigoPrincipal': codigoPrincipal,

@@ -329,7 +329,9 @@ class CouponPromotion(models.Model):
                 ),
                 "body_html": template.render(**variables),
                 "email_to": row.email,
-                "email_from": row.env.user.company_id.email,
+                "email_from": "{} <{}>".format(
+                    row.env.user.company_id.name, row.env.user.company_id.email
+                ),
                 "author_id": row.env.user.company_id.partner_id.id,
             }
             mail_obj.create(vals)
@@ -341,13 +343,14 @@ class CouponPromotion(models.Model):
         def _validate(coupon):
             today = fields.Date.context_today(self)
             return {
-                coupon.coupon_id.min_amount > due: "Valor minimo para aplicar el cupón es de {}".format(
+                coupon.coupon_id.min_amount
+                > due: "Valor minimo para aplicar el cupón es de {}".format(
                     coupon.coupon_id.min_amount
                 ),
                 not coupon.date_from <= today <= coupon.date_to: "Cupón expirado",
                 coupon.used: "Cupon aplicado",
-                coupon.partner_id.id != partner_id:
-                    "El cupón a aplicar no corresponde al cliente a facturar",
+                coupon.partner_id.id
+                != partner_id: "El cupón a aplicar no corresponde al cliente a facturar",
             }.get(True) or False
 
         coupon = self.search(
