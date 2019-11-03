@@ -7,25 +7,29 @@ class PosOrder(models.Model):
     @api.model
     def create_from_ui(self, orders):
         order_ids = super(PosOrder, self).create_from_ui(orders)
-        self.env["coupon.promotion"].search(
-            [
-                (
-                    "name",
-                    "in",
-                    [
-                        j[2].get("coupon")
-                        for i in orders
-                        for j in i["data"]["statement_ids"]
-                        if j[2].get("coupon")
-                    ],
-                )
-            ]
-        ).write(
-            {
-                "used": True,
-                "used_in": self._name,
-                "date_used": fields.Date.context_today(self),
-                "reference": "{},{}".format(self._name, self.id),
-            }
-        )
+        coupon_obj = self.env["coupon.promotion"]
+        for order in order_ids:
+            order_data = self.browse(order)
+            for row in orders:
+                if order_data.pos_reference == row.get("data").get("name"):
+                    coupon_obj.search(
+                        [
+                            (
+                                "name",
+                                "in",
+                                [
+                                    pay[2].get("coupon")
+                                    for pay in row.get("data").get("statement_ids")
+                                    if pay[2].get("coupon")
+                                ],
+                            )
+                        ]
+                    ).write(
+                        {
+                            "used": True,
+                            "used_in": self._name,
+                            "date_used": fields.Date.context_today(self),
+                            "reference": "{},{}".format(self._name, order),
+                        }
+                    )
         return order_ids
