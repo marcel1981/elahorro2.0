@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from datetime import datetime as dt
-
-import pytz
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
@@ -26,7 +23,7 @@ class AccountPayment(models.Model):
     @api.onchange("coupon_code")
     def _onchange_coupon_code(self):
         promo_obj = self.env["coupon.promotion"]
-        today = dt.now(tz=pytz.timezone(self.env.user.tz)).strftime("%Y-%m-%d")
+        today = fields.Date.context_today(self)
         amount = 0
         coupon = False
         valid = False
@@ -36,6 +33,15 @@ class AccountPayment(models.Model):
                 if len(row.mapped("invoice_ids").ids) > 1:
                     raise ValidationError(
                         _("You cannot apply the coupon to multiple invoices!")
+                    )
+                if (
+                    row.mapped("invoice_ids")
+                    .mapped("payment_ids")
+                    .mapped("journal_id")
+                    .mapped("coupons")
+                ):
+                    raise ValidationError(
+                        _("You can only register one coupon per invoice!")
                     )
                 promo_id = promo_obj.search(
                     [
@@ -96,7 +102,11 @@ class AccountPayment(models.Model):
                 {
                     "used": True,
                     "used_in": self.env.context.get("active_model"),
-                    "date_used": fields.Date.today(),
+                    "date_used": fields.Date.context_today(self),
+                    "reference": "{},{}".format(
+                        self.env.context.get("active_model"),
+                        self.mapped("invoice_ids").ids[0],
+                    ),
                 }
             )
         return res

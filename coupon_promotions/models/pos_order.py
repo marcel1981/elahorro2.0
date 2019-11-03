@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class PosOrder(models.Model):
@@ -20,5 +20,12 @@ class PosOrder(models.Model):
                     ],
                 )
             ]
-        ).write({"used": True, "used_in": self._name, "date_used": fields.Date.today()})
+        ).write(
+            {
+                "used": True,
+                "used_in": self._name,
+                "date_used": fields.Date.context_today(self),
+                "reference": "{},{}".format(self._name, self.id),
+            }
+        )
         return order_ids

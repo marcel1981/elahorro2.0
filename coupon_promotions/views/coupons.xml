@@ -64,6 +64,7 @@
                                         <field name="used" />
                                         <field name="used_in" />
                                         <field name="date_used" />
+                                        <field name="reference" />
                                         <field name="state" />
                                     </tree>
                                 </field>
@@ -78,9 +79,25 @@
                                     <li> <label string="{{ min_amount }}: Minimum purchase amount in which the coupon applies." /> </li>
                                     <li> <label string="{{ barcode|safe }}: Coupon Barcode." /> </li>
                                     <li> <label string="{{ code }}: Coupon Code." /> </li>
+                                    <li> <label string="{{ cupon_limit }}: Coupon Limit per Customer." /> </li>
                                 </ul>
                                 <separator string="Email Body"/>
-                                <field name="body_html" class="o_mail_body" widget="html" required="1" />
+                                <field name="body_html" class="o_mail_body" widget="html" />
+                            </page>
+                            <page string="Mail Body Limit">
+                                <label string="To edit the email template, the following tags must be used" />
+                                <ul>
+                                    <li> <label string="{{ name }}: Name of the promotion that will deliver the coupon." /> </li>
+                                    <li> <label string="{{ partner }}: Name of the customer to whom the coupon will be delivered." /> </li>
+                                    <li> <label string="{{ date_to }}: date until the promotion applies." /> </li>
+                                    <li> <label string="{{ amount }}: Amount of Coupon." /> </li>
+                                    <li> <label string="{{ min_amount }}: Minimum purchase amount in which the coupon applies." /> </li>
+                                    <li> <label string="{{ barcode|safe }}: Coupon Barcode." /> </li>
+                                    <li> <label string="{{ code }}: Coupon Code." /> </li>
+                                    <li> <label string="{{ cupon_limit }}: Coupon Limit per Customer." /> </li>
+                                </ul>
+                                <separator string="Email Body"/>
+                                <field name="body_html_limit" class="o_mail_body" widget="html" />
                             </page>
                         </notebook>
                     </sheet>
@@ -130,11 +147,12 @@
                     <field name="partner_id" />
                     <field name="date_from" />
                     <field name="date_to" />
-                    <field name="date_used" />
                     <field name="team_ids" widget="many2many_tags"/>
                     <field name="value" />
                     <field name="used" />
                     <field name="used_in" />
+                    <field name="date_used" />
+                    <field name="reference" />
                     <field name="send" />
                     <field name="state" />
                 </tree>
@@ -150,14 +168,15 @@
                         <group>
                             <group>
                                 <field name="name" />
+                                <field name="used" />
                                 <field name="used_in" />
+                                <field name="date_used" />
+                                <field name="reference" />
                                 <field name="number" />
                             </group>
                             <group>
-                                <field name="used" />
                                 <field name="date_from" />
                                 <field name="date_to" />
-                                <field name="date_used" />
                                 <field name="team_ids" widget="many2many_tags"/>
                             </group>
                         </group>
@@ -171,6 +190,8 @@
                                         <field name="value" />
                                     </group>
                                     <group>
+                                        <field name="partner_street" />
+                                        <field name="partner_phone" />
                                         <field name="coupon_id" />
                                     </group>
                                 </group>
