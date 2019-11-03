@@ -11,6 +11,7 @@
     "depends": ["account_payment", "ec_partner", "point_of_sale", "sale_management"],
     "data": [
         "security/ir.model.access.csv",
+        "security/coupons_security.xml",
         "data/journal_data.xml",
         "views/account.xml",
         "views/coupons.xml",
