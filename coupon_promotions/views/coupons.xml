@@ -7,11 +7,13 @@
                   name="Coupon Management"
                   web_icon="coupon_promotions,static/description/icon.png"
                   active="True"
+                  groups="coupon_promotions.group_coupons"
                   sequence="8"/>
 
         <menuitem id="coupon_promotion_menu"
                   name="Coupons"
                   parent="coupon_promotion_menu_root"
+                  groups="coupon_promotions.group_coupons"
                   sequence="2"/>
 
         <record id="view_coupon_form" model="ir.ui.view">
@@ -135,6 +137,7 @@
         <menuitem id="menu_coupon"
                   parent="coupon_promotion_menu"
                   action="action_coupon"
+                  groups="coupon_promotions.group_coupons"
                   sequence="30" />
 
         <record id="view_coupon_promotion_tree" model="ir.ui.view">
@@ -213,6 +216,7 @@
         <menuitem id="menu_coupon_promotion"
                   parent="coupon_promotion_menu"
                   action="action_coupon_promotion"
+                  groups="coupon_promotions.group_coupons"
                   sequence="60" />
 
 
