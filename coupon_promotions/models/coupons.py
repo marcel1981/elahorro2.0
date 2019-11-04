@@ -334,7 +334,8 @@ class CouponPromotion(models.Model):
                 ),
                 "author_id": row.env.user.company_id.partner_id.id,
             }
-            mail_obj.create(vals)
+            mail = mail_obj.create(vals)
+            mail.send()
             row.send = True
         return True
 
