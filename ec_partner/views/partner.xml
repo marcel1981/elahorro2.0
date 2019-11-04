@@ -1,41 +1,54 @@
 <odoo>
     <data>
+
+        <record id="view_res_partner_identification_filter" model="ir.ui.view">
+            <field name="name">partner.identification.filter</field>
+            <field name="model">res.partner</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after" >
+                    <field name="identification" string="CI/RUC" />
+                </xpath>
+            </field>
+        </record>
+
         <!-- show fields for partner-->
         <record id="view_partner_inherit_form" model="ir.ui.view" >
-          <field name="name">res.partner.activities.form.inherit</field>
-          <field name="inherit_id" ref="base.view_partner_form"/>
-          <field name="model">res.partner</field>
+            <field name="name">res.partner.activities.form.inherit</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="model">res.partner</field>
             <field name="priority" eval="20"/>
-          <field name="arch" type="xml">
-              <data>
-                  <field name="vat" position="after">
-                    <field name="type_identifier" />
-                    <field name="identification" />
-                  </field>
-                   <!--hidden vat-->
-                  <field name="vat" position="attributes">
-                     <attribute name="invisible">1</attribute>
-                  </field>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="vat" position="after">
+                        <field name="type_identifier" />
+                        <field name="identification" />
+                    </field>
+                    <!--hidden vat-->
+                    <field name="vat" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </field>
 
-                  <field name="street2" position="attributes">
-                     <attribute name="invisible">1</attribute>
-                  </field>
+                    <field name="street2" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </field>
 
-                  <field name="state_id" position="attributes">
-                     <attribute name="invisible">1</attribute>
-                  </field>
+                    <field name="state_id" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </field>
 
-                  <field name="zip" position="attributes">
-                     <attribute name="invisible">1</attribute>
-                  </field>
+                    <field name="zip" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </field>
 
-                  <field name="city" position="replace">
-                      <field name="city" placeholder="Quito" value="Quito" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                  </field>
+                    <field name="city" position="replace">
+                        <field name="city" placeholder="Quito" value="Quito" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    </field>
 
-              </data>
+                </data>
 
-          </field>
+            </field>
         </record>
 
         <!--Shows tree ci/ruc first -->
@@ -49,5 +62,6 @@
                 </xpath>
             </field>
         </record>
+
     </data>
 </odoo>
