@@ -15,6 +15,7 @@
         "data/journal_data.xml",
         "views/account.xml",
         "views/coupons.xml",
+        "views/partner.xml",
         "views/template_view.xml",
     ],
     "qweb": [],

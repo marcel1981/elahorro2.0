@@ -16,6 +16,23 @@
                   groups="coupon_promotions.group_coupons"
                   sequence="2"/>
 
+        <record id="view_coupon_filter" model="ir.ui.view">
+            <field name="name">view.coupon.search</field>
+            <field name="model">coupon</field>
+            <field name="arch" type="xml">
+                <search string="Search Coupons">
+                    <field name="name" string="Coupon" />
+                    <field name="coupon_apply"/>
+                    <field name="team_ids" string="Sales Channel"/>
+                    <group expand="0" string="Group By">
+                        <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Month from" domain="[]" context="{'group_by':'date_from'}"/>
+                        <filter string="Month" domain="[]" context="{'group_by':'date_to'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
         <record id="view_coupon_form" model="ir.ui.view">
             <field name="name">view.coupon.form</field>
             <field name="model">coupon</field>
@@ -139,6 +156,27 @@
                   action="action_coupon"
                   groups="coupon_promotions.group_coupons"
                   sequence="30" />
+
+        <record id="view_coupon_promotion_filter" model="ir.ui.view">
+            <field name="name">view.coupon.promotion.search</field>
+            <field name="model">coupon.promotion</field>
+            <field name="arch" type="xml">
+                <search string="Search Coupons">
+                    <field name="name" string="Code" />
+                    <field name="partner_id" operator="child_of"/>
+                    <field name="coupon_id" string="Coupon" />
+                    <field name="team_ids" string="Sales Channel"/>
+                    <field name="reference" />
+                    <group expand="0" string="Group By">
+                        <filter string="Used" domain="[]" context="{'group_by':'used'}"/>
+                        <filter string="Used In" domain="[]" context="{'group_by':'used_in'}"/>
+                        <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Month from" domain="[]" context="{'group_by':'date_from'}"/>
+                        <filter string="Month to" domain="[]" context="{'group_by':'date_to'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
 
         <record id="view_coupon_promotion_tree" model="ir.ui.view">
             <field name="name">view.coupon.promotion.tree</field>
