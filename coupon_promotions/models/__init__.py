@@ -1,1 +1,1 @@
-from . import account, coupons, pos_order
+from . import account, coupons, partner, pos_order
